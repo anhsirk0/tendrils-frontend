@@ -5,7 +5,7 @@ import Signup from "./Signup";
 
 const SigninPage = () => {
   return (
-    <div className="min-h-screen overflow-hidden bg-primary/40 flex justify-center items-center m-0 p-0 relative">
+    <div className="min-h-screen overflow-hidden bg-primary/25 flex justify-center items-center m-0 p-0 relative">
       <FloatingBox
         outer="-top-5 -left-16 z-0"
         inner="w-60 h-60 rounded-xl transform rotate-45"

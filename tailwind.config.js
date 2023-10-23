@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       keyframes: {
-        flip: {
+        twirl: {
           "0%": { transform: "scale(0) rotate(-150deg)", opacity: "0" },
           "100%": { transform: "scale(1) rotate(0)", opacity: "1" },
         },
@@ -16,14 +16,14 @@ export default {
       },
       animation: {
         float: "float 2s ease-in-out infinite",
-        flip: "flip 200ms ease-in-out",
+        twirl: "twirl 200ms ease-in-out",
       },
     },
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["emerald"],
-    // themes: ["business"],
+    // themes: ["emerald"],
+    themes: ["business"],
     // themes: ["forest"],
   },
 };

@@ -5,10 +5,10 @@ const Signin = () => {
   const [info, updateInfo] = useRecord({ username: "", password: "" });
 
   return (
-    <div className="card bg-base-100 shadow-xl z-20 animate-flip">
+    <div className="card bg-base-100 shadow-xl z-20 animate-twirl">
       <div className="card-body p-12">
         <h1 className="text-3xl font-bold text-center mb-2">Welcome back!</h1>
-        <p className="w-80 text-center text-sm mb-8 font-semibold text-base-content/60 tracking-wide">
+        <p className="w-80 text-center text-sm mb-8 font-semibold text-base-content/60">
           SignIn to your Tendrils account
         </p>
         <form id="signin-form" method="post" className="flex flex-col gap-4">
