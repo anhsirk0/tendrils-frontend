@@ -12,7 +12,13 @@ const emptyPlant: Plant = {
   uuid: "",
 };
 
-export const useAuthStore = create((set) => ({
+export type StoreState = {
+  plant: Plant;
+  signin: (plant: Plant) => void;
+  signout: () => void;
+};
+
+export const useAuthStore = create<StoreState>((set) => ({
   plant: emptyPlant,
   signin: (plant: Plant) => set(() => ({ plant })),
   signout: () => set(() => ({ plant: emptyPlant })),
