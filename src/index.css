@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Toastify__toast-theme--light {
+  background-color: hsl(var(--b1));
+  border-radius: var(--rounded-box);
+  color: var(--bc);
+  --toastify-icon-color-error: hsl(var(--er));
+  --toastify-icon-color-success: hsl(var(--su));
+  --toastify-icon-color-warn: hsl(var(--wa));
+}
+
+.Toastify__progress-bar--error {
+  background-color: hsl(var(--er));
+}
+
+.Toastify__progress-bar--success {
+  background-color: hsl(var(--su));
+}
+
+.Toastify__progress-bar--warn {
+  background-color: hsl(var(--wa));
+}
+

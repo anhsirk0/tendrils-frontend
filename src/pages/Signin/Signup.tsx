@@ -1,14 +1,47 @@
-import { FC } from "react";
-import { NavLink } from "react-router-dom";
+import { FC, FormEvent } from "react";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { clsx } from "clsx";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+
+// local imports
+import { AuthService } from "@/services";
 import { useRecord } from "@/hooks";
+import { Loading } from "@/components";
+import { useAuthStore } from "@/store";
+import { toTitleCase } from "@/helpers";
 
 const SignUp: FC = () => {
+  const { plant } = useAuthStore();
   const [info, updateInfo] = useRecord({
-    username: "",
+    name: "",
+    plantname: "",
     password: "",
     confirmation: "",
   });
 
+  const navigate = useNavigate();
+  const { mutate, isPending } = useMutation({
+    mutationFn: async () => await AuthService.signup({ data: info }),
+    onSuccess: () => {
+      toast.success("Account created successfully, you can login now");
+      navigate("/signin");
+    },
+    onError: (e: AxiosError<any, any>) =>
+      toast.error(e?.response?.data?.message || "Something went wrong"),
+  });
+
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (info.password !== info.confirmation)
+      return toast.error("Password and Confirmation didn't match", {
+        toastId: "pc",
+      });
+    mutate();
+  }
+
+  if (plant.uuid) return <Navigate to="/" replace />;
   return (
     <div className="card bg-base-100 shadow-xl z-20 animate-twirl">
       <div className="card-body p-12">
@@ -16,34 +49,38 @@ const SignUp: FC = () => {
         <p className="w-80 text-center text-sm mb-8 font-semibold text-base-content/60">
           Create your Tendrils account
         </p>
-        <form id="signin-form" method="post" className="flex flex-col gap-4">
-          <input
-            value={info.username}
-            onChange={(e) => updateInfo("username", e.target.value)}
-            name="username"
-            type="text"
-            placeholder="Username"
-            className="input input-bordered"
-          />
-          <input
-            value={info.password}
-            onChange={(e) => updateInfo("password", e.target.value)}
-            name="password"
-            type="password"
-            placeholder="Password"
-            className="input input-bordered"
-          />
-          <input
-            value={info.confirmation}
-            onChange={(e) => updateInfo("confirmation", e.target.value)}
-            name="confirmation"
-            type="password"
-            placeholder="Confirm password"
-            className="input input-bordered"
-          />
-          <button type="submit" className="btn btn-block btn-primary shadow">
+        <form onSubmit={onSubmit} className="flex flex-col gap-4">
+          {Object.keys(info).map((kee) => {
+            const key = kee as keyof typeof info;
+            return (
+              <input
+                key={kee}
+                value={info[key]}
+                onChange={(e) => updateInfo(key, e.target.value)}
+                name={kee}
+                type={
+                  ["password", "confirmation"].includes(kee)
+                    ? "password"
+                    : "text"
+                }
+                placeholder={toTitleCase(kee)}
+                className="input input-bordered"
+                required
+              />
+            );
+          })}
+          <Loading
+            on={isPending}
+            component="button"
+            type="submit"
+            className={clsx(
+              "btn btn-block btn-primary shadow",
+              isPending && "btn-disabled",
+            )}
+            disabled={isPending}
+          >
             Create Account
-          </button>
+          </Loading>
           <p className="mt-4 text-sm text-center">
             Already have an Account? {""}
             <NavLink to="/signin" className="underline cursor-pointer">
