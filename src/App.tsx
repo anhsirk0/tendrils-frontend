@@ -1,11 +1,13 @@
+import { FC, lazy, Suspense, ReactNode } from "react";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Layout } from "@/components";
-import Signin from "@/pages/Signin";
-import Home from "@/pages/Home";
+import { Layout, Loader } from "@/components";
+const Home = lazy(() => import("@/pages/Home"));
+const Signin = lazy(() => import("@/pages/Signin"));
 
 const queryClient = new QueryClient();
 
@@ -14,11 +16,18 @@ const App = () => (
     <ToastContainer pauseOnFocusLoss={false} />
     <Router>
       <Routes>
-        <Route path="/signin/*" element={<Signin />} />
-        <Route path="/*" element={<Layout children={<Home />} />} />
+        <Route path="/signin/*" element={<Suspensed children={<Signin />} />} />
+        <Route
+          path="/*"
+          element={<Layout children={<Suspensed children={<Home />} />} />}
+        />
       </Routes>
     </Router>
   </QueryClientProvider>
+);
+
+const Suspensed: FC<{ children: ReactNode }> = ({ children }) => (
+  <Suspense fallback={<Loader />} children={children} />
 );
 
 export default App;

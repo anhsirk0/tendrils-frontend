@@ -28,7 +28,7 @@ const SignUp: FC = () => {
       toast.success("Account created successfully, you can login now");
       navigate("/signin");
     },
-    onError: (e: AxiosError<any, any>) =>
+    onError: (e: AxiosError<any>) =>
       toast.error(e?.response?.data?.message || "Something went wrong"),
   });
 
