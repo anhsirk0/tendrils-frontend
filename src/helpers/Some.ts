@@ -27,9 +27,9 @@ export class Some {
     return Boolean(b);
   }
 
-  static Object(obj?: any, defaultValue?: object): object {
+  static Object<T extends Record<string, any>>(obj?: any, defaultValue?: T): T {
     if (typeof obj === "object" && !Array.isArray(obj) && obj !== null)
       return obj;
-    return defaultValue || {};
+    return defaultValue || ({} as T);
   }
 }
