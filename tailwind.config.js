@@ -22,8 +22,8 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["emerald"],
-    // themes: ["business"],
+    // themes: ["emerald"],
+    themes: ["black"],
     // themes: ["forest"],
   },
 };

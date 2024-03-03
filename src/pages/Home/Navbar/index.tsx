@@ -5,7 +5,7 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0">
-      <div className="navbar bg-base-100 border-b">
+      <div className="navbar bg-base-100 border-b border-b-base-300">
         <div className="navbar-start">
           <a className="btn btn-ghost text-xl">Tendrils</a>
         </div>
@@ -15,13 +15,13 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="btn btn-primary btn-circle avatar"
             >
               {plant.name.charAt(0)}
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-300 rounded-box w-52"
             >
               <li>
                 <a>Settings</a>
