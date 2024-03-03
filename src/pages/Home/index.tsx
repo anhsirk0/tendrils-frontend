@@ -8,7 +8,7 @@ const Home = () => {
 
   if (!plant.uuid) return <Navigate to="signin" />;
   return (
-    <div className="container h-full">
+    <div className="px-8 w-full h-full">
       <Navbar />
       <div className="text-7xl">This is home</div>
       <Loading on={false} />

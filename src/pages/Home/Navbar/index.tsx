@@ -1,4 +1,5 @@
 import { useAuthStore } from "@/store";
+import SelectTheme from "./SelectTheme";
 
 const Navbar = () => {
   const { plant, signout } = useAuthStore();
@@ -10,7 +11,8 @@ const Navbar = () => {
           <a className="btn btn-ghost text-xl">Tendrils</a>
         </div>
         {/* <div className="navbar-center hidden lg:flex"></div> */}
-        <div className="navbar-end">
+        <div className="navbar-end space-x-4">
+          <SelectTheme />
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}

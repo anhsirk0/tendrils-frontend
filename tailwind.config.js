@@ -1,3 +1,5 @@
+import themes from "./src/assets/themes.ts";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -21,9 +23,5 @@ export default {
     },
   },
   plugins: [require("daisyui")],
-  daisyui: {
-    // themes: ["emerald"],
-    themes: ["black"],
-    // themes: ["forest"],
-  },
+  daisyui: { themes },
 };
