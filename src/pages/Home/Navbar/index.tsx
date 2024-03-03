@@ -6,7 +6,7 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0">
-      <div className="navbar bg-base-100 border-b border-b-base-300">
+      <div className="navbar bg-base-100 border-b border-b-base-content/30">
         <div className="navbar-start">
           <a className="btn btn-ghost text-xl">Tendrils</a>
         </div>

@@ -1,10 +1,11 @@
-import themes from "./src/assets/themes.ts";
+import { themes, breakpoints } from "./src/config";
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      //  screens: breakpoints,
       keyframes: {
         twirl: {
           "0%": { transform: "scale(0) rotate(-150deg)", opacity: "0" },

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { IconColorSwatch } from "@tabler/icons-react";
 import { themeChange } from "theme-change";
-import themes from "@/assets/themes";
+import { themes } from "@/config";
 
 const SelectTheme = () => {
   useEffect(() => {
@@ -11,11 +11,7 @@ const SelectTheme = () => {
 
   return (
     <div className="dropdown dropdown-bottom dropdown-end">
-      <div
-        className="display-none"
-        data-set-theme=""
-        data-key="tendrils-theme"
-      />
+      <div className="hidden" data-set-theme="" data-key="tendrils-theme" />
       <label
         tabIndex={0}
         className="btn btn-sm xl:btn-md btn-ghost font-normal"

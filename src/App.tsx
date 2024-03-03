@@ -27,7 +27,7 @@ const App = () => (
 );
 
 const Suspensed: FC<{ children: ReactNode }> = ({ children }) => (
-  <Suspense fallback={<Loader />} children={children} />
+  <Suspense fallback={<Layout children={<Loader />} />} children={children} />
 );
 
 export default App;
