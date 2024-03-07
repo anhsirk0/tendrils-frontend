@@ -1,7 +1,10 @@
 import { FC } from "react";
-import { Routes, Route } from "react-router-dom";
-import Signin from "./Signin";
-import Signup from "./Signup";
+import { Routes } from "react-router-dom";
+import { RoutesMap, GetRoute } from "@/AppRoutes";
+
+const subRoutes = Object.keys(RoutesMap.SIGNIN.subRoutes).map(
+  (key) => RoutesMap.SIGNIN.subRoutes[key]
+);
 
 const SigninPage = () => (
   <div className="min-h-screen overflow-hidden bg-primary/25 flex justify-center items-center m-0 p-0 relative">
@@ -13,10 +16,7 @@ const SigninPage = () => (
       outer="-bottom-4 -right-10"
       inner="w-48 h-48 rounded-xl transform rotate-12"
     />
-    <Routes>
-      <Route path="/" element={<Signin />} index />
-      <Route path="/new" element={<Signup />} />
-    </Routes>
+    <Routes>{subRoutes.map(GetRoute)}</Routes>
     <FloatingBox outer="top-0 right-12" inner="w-40 h-40 rounded-full" />
     <FloatingBox
       outer="bottom-10 left-10"

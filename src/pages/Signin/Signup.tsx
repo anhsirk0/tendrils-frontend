@@ -1,5 +1,5 @@
-import { FC, FormEvent } from "react";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { FormEvent } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { clsx } from "clsx";
 import { toast } from "react-toastify";
@@ -9,11 +9,10 @@ import { AxiosError } from "axios";
 import { AuthService } from "@/services";
 import { useRecord } from "@/hooks";
 import { Loading } from "@/components";
-import { useAuthStore } from "@/store";
 import { toTitleCase } from "@/helpers";
+import { RoutesMap } from "@/AppRoutes";
 
-const SignUp: FC = () => {
-  const { plant } = useAuthStore();
+const SignUp = () => {
   const [info, updateInfo] = useRecord({
     name: "",
     plantname: "",
@@ -41,7 +40,6 @@ const SignUp: FC = () => {
     mutate();
   }
 
-  if (plant.uuid) return <Navigate to="/" replace />;
   return (
     <div className="card bg-base-100 shadow-xl z-20 animate-twirl">
       <div className="card-body p-12">
@@ -75,7 +73,7 @@ const SignUp: FC = () => {
             type="submit"
             className={clsx(
               "btn btn-block btn-primary shadow",
-              isPending && "btn-disabled",
+              isPending && "btn-disabled"
             )}
             disabled={isPending}
           >
@@ -83,7 +81,10 @@ const SignUp: FC = () => {
           </Loading>
           <p className="mt-4 text-sm text-center">
             Already have an Account? {""}
-            <NavLink to="/signin" className="underline cursor-pointer">
+            <NavLink
+              to={RoutesMap.SIGNIN.subRoutes.SIGNIN.path}
+              className="underline cursor-pointer"
+            >
               Sign In
             </NavLink>
           </p>

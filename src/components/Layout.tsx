@@ -1,8 +1,8 @@
-import { FC, ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 
-const Layout: FC<{ children: ReactNode }> = ({ children }) => (
+const Layout = () => (
   <div className="flex items-center justify-center h-screen min-w-screen">
-    {children}
+    <Outlet />
   </div>
 );
 
