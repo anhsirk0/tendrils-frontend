@@ -82,7 +82,7 @@ const SignUp = () => {
           <p className="mt-4 text-sm text-center">
             Already have an Account? {""}
             <NavLink
-              to={RoutesMap.SIGNIN.subRoutes.SIGNIN.path}
+              to={"/" + RoutesMap.SIGNIN.path}
               className="underline cursor-pointer"
             >
               Sign In
