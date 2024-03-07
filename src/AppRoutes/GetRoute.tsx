@@ -14,7 +14,11 @@ function GetRoute(route: AppRoute) {
   );
 }
 
-const Fallback = () => <div className="h-full w-full" children={<Loader />} />;
+const Fallback = () => (
+  <div className="flex items-center justify-center h-screen min-w-screen">
+    <Loader />
+  </div>
+);
 
 function Suspensed(
   Component: AppRoute["Element"],
