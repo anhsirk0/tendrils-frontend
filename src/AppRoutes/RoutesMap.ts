@@ -4,7 +4,6 @@ import { lazy } from "react";
 import type { AppRoute } from "./types";
 
 const Home = lazy(() => import("@/pages/Home"));
-const Auth = lazy(() => import("@/pages/Signin"));
 const Signin = lazy(() => import("@/pages/Signin/Signin"));
 const Signup = lazy(() => import("@/pages/Signin/Signup"));
 
@@ -18,27 +17,21 @@ class RoutesMap {
     // Skeleton: DashboardSkeleton,
     kind: "private",
   };
+
   // Public Routes
   static SIGNIN: AppRoute = {
     title: "Signin",
     path: "",
-    subRoutes: {
-      SIGNIN: {
-        title: "Signin",
-        path: "/",
-        subRoutes: {},
-        Element: Signin,
-        kind: "public",
-      },
-      SIGNUP: {
-        title: "Signup",
-        path: "new",
-        subRoutes: {},
-        Element: Signup,
-        kind: "public",
-      },
-    },
-    Element: Auth,
+    subRoutes: {},
+    Element: Signin,
+    kind: "public",
+  };
+
+  static SIGNUP: AppRoute = {
+    title: "Signup",
+    path: "new",
+    subRoutes: {},
+    Element: Signup,
     kind: "public",
   };
   // static FORGET_PASSWORD: AppRoute = {

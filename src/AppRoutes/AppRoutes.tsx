@@ -3,6 +3,7 @@ import { groupBy } from "@/helpers";
 import { useCreds } from "@/hooks";
 import { appRoutes, GetRoute } from "@/AppRoutes";
 import { Layout } from "@/components";
+import AuthLayout from "@/pages/Signin";
 
 const allRoutes = groupBy(appRoutes, "kind");
 
@@ -17,7 +18,9 @@ const AppRoutes = () => {
             {allRoutes["private"].map(GetRoute)}
           </Route>
         ) : (
-          allRoutes["public"].map(GetRoute)
+          <Route path="/" element={<AuthLayout />}>
+            {allRoutes["public"].map(GetRoute)}
+          </Route>
         )}
         {/* {allRoutes["independent"].map(GetRoute)} */}
         <Route path="*" element={<Navigate to="/" replace />} />
