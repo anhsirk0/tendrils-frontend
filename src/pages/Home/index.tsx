@@ -1,13 +1,9 @@
-import { Navigate } from "react-router-dom";
-import { useAuthStore } from "@/store";
 import { useMediaQuery } from "@/hooks";
 import Navbar from "./Navbar";
 
 const Home = () => {
-  const plant = useAuthStore((state) => state.plant);
   const isLg = useMediaQuery("lg");
 
-  if (!plant.uuid) return <Navigate to="signin" />;
   return (
     <div className="px-2 lg:px-8 w-full h-full">
       <Navbar />

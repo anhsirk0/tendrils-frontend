@@ -1,0 +1,44 @@
+#+title: Routes of the App (src/AppRoutes)
+#+author: amn1729
+
+* type AppRoute
+ - title: string
+ - path: string
+ - subRoutes: Record<string, AppRoute>
+ - kind: "public" | "private" | "independent"
+ - Element: LazyExoticComponent<() => JSX.Element> | (() => JSX.Element)
+ - Skeleton?: MemoExoticComponent<FC<any>> | (() => JSX.Element)
+
+* Private Routes
+** HOME
+*** title: "Home"
+*** path: ""
+*** subRoutes: {}
+*** kind: "private"
+*** Element: Home
+* Public Routes
+** AUTH
+*** title: "Signin"
+*** path: ""
+*** subRoutes
+*** kind: "public"
+*** Element: Auth
+**** Signin
+***** title: "Signin"
+***** path: ""
+***** Element: Signin
+***** kind: "public"
+***** subRoutes: {}
+**** Signup
+***** title: "Signup"
+***** path: "new"
+***** Element: Signup
+***** kind: "public"
+***** subRoutes: {}
+# * Independent Routes
+# ** CONTROL_TOWER_SIGNIN
+# *** title: "Control Tower Login"
+# *** path: "signin/:loginId"
+# *** subRoutes: [ ]
+# *** kind: "independent"
+# *** Element: ControlTowerSignin
