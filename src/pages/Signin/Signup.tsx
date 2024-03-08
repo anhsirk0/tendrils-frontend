@@ -1,13 +1,11 @@
 import { FormEvent } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
 import { clsx } from "clsx";
 import { toast } from "react-toastify";
-import { AxiosError } from "axios";
 
 // local imports
 import { AuthService } from "@/services";
-import { useRecord } from "@/hooks";
+import { useRecord, useApi } from "@/hooks";
 import { Loading } from "@/components";
 import { toTitleCase } from "@/helpers";
 import { RoutesMap } from "@/AppRoutes";
@@ -21,14 +19,13 @@ const SignUp = () => {
   });
 
   const navigate = useNavigate();
-  const { mutate, isPending } = useMutation({
-    mutationFn: async () => await AuthService.signup({ data: info }),
+  const { mutate, isPending } = useApi({
+    fn: async () => await AuthService.signup({ data: info }),
     onSuccess: () => {
       toast.success("Account created successfully, you can login now");
-      navigate("/signin");
+      navigate("/");
     },
-    onError: (e: AxiosError<any>) =>
-      toast.error(e?.response?.data?.message || "Something went wrong"),
+    onError: (resp) => toast.error(resp?.message || "Something went wrong"),
   });
 
   function onSubmit(e: FormEvent) {

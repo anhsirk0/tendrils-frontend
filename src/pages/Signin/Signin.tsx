@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import { clsx } from "clsx";
 
 // local imports
 import { AuthService } from "@/services";
 import { Loading } from "@/components";
-import { useRecord } from "@/hooks";
+import { useRecord, useApi } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { Some } from "@/helpers";
 import { RoutesMap } from "@/AppRoutes";
@@ -14,14 +14,22 @@ const Signin = () => {
   const { signin } = useAuthStore();
   const [info, updateInfo] = useRecord({ plantname: "", password: "" });
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: async () => (await AuthService.login({ data: info }))?.data,
-    onSuccess: (resp) =>
+  const { mutate, isPending } = useApi({
+    fn: async () => await AuthService.login({ data: info }),
+    onSuccess: (resp) => {
+      toast.dismiss("err");
+      const name = Some.String(resp?.data?.name);
+      const token = Some.String(resp?.data?.token);
       signin({
-        name: Some.String(resp?.data?.name),
-        uuid: Some.String(resp?.data?.uuid),
+        name,
+        token,
         plantname: Some.String(resp?.data?.plantname),
-      }),
+        isLoggedIn: token.length > 37,
+      });
+      toast.success(`Welcome back, ${name}`);
+    },
+    onError: (r) =>
+      toast.error(r?.message || "Something went wrong", { toastId: "err" }),
   });
 
   return (

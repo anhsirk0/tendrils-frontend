@@ -8,12 +8,12 @@ import AuthLayout from "@/pages/Signin";
 const allRoutes = groupBy(appRoutes, "kind");
 
 const AppRoutes = () => {
-  const plant = useCreds("uuid");
+  const plant = useCreds("token", "isLoggedIn");
 
   return (
     <BrowserRouter>
       <Routes>
-        {plant.uuid ? (
+        {plant.isLoggedIn && plant.token ? (
           <Route path="/" element={<Layout />}>
             {allRoutes["private"].map(GetRoute)}
           </Route>
