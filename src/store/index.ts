@@ -4,10 +4,16 @@ import { persist } from "zustand/middleware";
 export type Plant = {
   name: string;
   plantname: string;
-  uuid: string; // update later
+  token: string; // update later
+  isLoggedIn: boolean;
 };
 
-const emptyPlant: Plant = { name: "", plantname: "", uuid: "" };
+const emptyPlant: Plant = {
+  name: "",
+  plantname: "",
+  token: "",
+  isLoggedIn: false,
+};
 
 export type StoreState = {
   plant: Plant;
@@ -22,8 +28,8 @@ const useAuthStore = create<StoreState, [["zustand/persist", StoreState]]>(
       signin: (plant: Plant) => set(() => ({ plant })),
       signout: () => set(() => ({ plant: emptyPlant })),
     }),
-    { name: "tendrils-user-info" },
-  ),
+    { name: "tendrils-user-info" }
+  )
 );
 
 export { useAuthStore };

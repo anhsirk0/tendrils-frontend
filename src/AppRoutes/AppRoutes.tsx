@@ -2,18 +2,17 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { groupBy } from "@/helpers";
 import { useCreds } from "@/hooks";
 import { appRoutes, GetRoute } from "@/AppRoutes";
-import { Layout } from "@/components";
-import AuthLayout from "@/pages/Signin";
+import { Layout, AuthLayout } from "@/layouts";
 
 const allRoutes = groupBy(appRoutes, "kind");
 
 const AppRoutes = () => {
-  const plant = useCreds("uuid");
+  const plant = useCreds("token", "isLoggedIn");
 
   return (
     <BrowserRouter>
       <Routes>
-        {plant.uuid ? (
+        {plant.isLoggedIn && plant.token ? (
           <Route path="/" element={<Layout />}>
             {allRoutes["private"].map(GetRoute)}
           </Route>
