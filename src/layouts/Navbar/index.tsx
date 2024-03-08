@@ -1,3 +1,7 @@
+import { IconLogout, IconUserCircle } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
+
+// local imports
 import { useAuthStore } from "@/store";
 import SelectTheme from "./SelectTheme";
 
@@ -26,10 +30,16 @@ const Navbar = () => {
               className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
             >
               <li>
-                <a>Settings</a>
+                <Link to="/me">
+                  <IconUserCircle />
+                  Profile
+                </Link>
               </li>
               <li>
-                <button onClick={signout}>Logout</button>
+                <button onClick={signout}>
+                  <IconLogout />
+                  Logout
+                </button>
               </li>
             </ul>
           </div>

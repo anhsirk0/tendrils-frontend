@@ -1,34 +1,90 @@
-import { FC } from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { clsx } from "clsx";
 
-const SigninPage = () => (
-  <div className="min-h-screen overflow-hidden bg-primary/25 flex justify-center items-center m-0 p-0 relative">
-    <FloatingBox
-      outer="-top-5 -left-16 z-0"
-      inner="w-60 h-60 rounded-xl transform rotate-45"
-    />
-    <FloatingBox
-      outer="-bottom-4 -right-10"
-      inner="w-48 h-48 rounded-xl transform rotate-12"
-    />
-    <Outlet />
-    <FloatingBox outer="top-0 right-12" inner="w-40 h-40 rounded-full" />
-    <FloatingBox
-      outer="bottom-10 left-10"
-      inner="w-20 h-44 rounded-full transform rotate-45"
-    />
-  </div>
-);
+// local imports
+import { AuthService } from "@/services";
+import { Loading } from "@/components";
+import { useRecord, useApi } from "@/hooks";
+import { useAuthStore } from "@/store";
+import { Some } from "@/helpers";
+import { RoutesMap } from "@/AppRoutes";
 
-interface Props {
-  outer?: string;
-  inner?: string;
-}
+const Signin = () => {
+  const { signin } = useAuthStore();
+  const [info, updateInfo] = useRecord({ plantname: "", password: "" });
 
-const FloatingBox: FC<Props> = ({ outer = "", inner = "" }) => (
-  <div className={"animate-float absolute " + outer}>
-    <div className={"bg-primary hidden md:block " + inner} />
-  </div>
-);
+  const { mutate, isPending } = useApi({
+    fn: async () => await AuthService.login({ data: info }),
+    onSuccess: (resp) => {
+      toast.dismiss("err");
+      const name = Some.String(resp?.data?.name);
+      const token = Some.String(resp?.data?.token);
+      signin({
+        name,
+        token,
+        plantname: Some.String(resp?.data?.plantname),
+        isLoggedIn: token.length > 37,
+      });
+      toast.success(`Welcome back, ${name}`);
+    },
+    onError: (r) =>
+      toast.error(r?.message || "Something went wrong", { toastId: "err" }),
+  });
 
-export default SigninPage;
+  return (
+    <div className="card bg-base-100 shadow-xl z-20 animate-twirl">
+      <div className="card-body p-12">
+        <h1 className="text-3xl font-bold text-center mb-2">Welcome back!</h1>
+        <p className="w-80 text-center text-sm mb-8 font-semibold text-base-content/60">
+          SignIn to your Tendrils account
+        </p>
+        <form
+          id="signin-form"
+          className="flex flex-col gap-4"
+          onSubmit={(e) => (e.preventDefault(), mutate())}
+        >
+          <input
+            value={info.plantname}
+            onChange={(e) => updateInfo("plantname", e.target.value)}
+            type="text"
+            placeholder="Plantname"
+            className="input input-bordered"
+            required
+          />
+          <input
+            value={info.password}
+            onChange={(e) => updateInfo("password", e.target.value)}
+            type="password"
+            placeholder="Password"
+            className="input input-bordered"
+            required
+          />
+          <Loading
+            on={isPending}
+            component="button"
+            type="submit"
+            className={clsx(
+              "btn btn-block btn-primary shadow",
+              isPending && "btn-disabled"
+            )}
+            disabled={isPending}
+          >
+            Sign in
+          </Loading>
+          <p className="mt-4 text-sm text-center">
+            Don't Have An Account? {""}
+            <NavLink
+              to={RoutesMap.SIGNUP.path}
+              className="underline cursor-pointer"
+            >
+              Sign Up
+            </NavLink>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Signin;
