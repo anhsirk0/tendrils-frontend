@@ -1,7 +1,7 @@
 // https://codeberg.org/anhsirk0/some-ts
 
 export class Some {
-  static Array<T>(arr?: any, defaultValue?: Array<T>): Array<T> {
+  static Array<T = any>(arr?: any, defaultValue?: Array<T>): Array<T> {
     if (Array.isArray(arr)) return arr;
     return defaultValue || [];
   }
@@ -13,7 +13,7 @@ export class Some {
   }
 
   static Number(num?: any, defaultValue?: number): number {
-    if (typeof num === "string") return Number(num) || 0;
+    if (typeof num === "string") return Number(num) ?? defaultValue ?? 0;
     if (typeof num === "number") return num;
     if (defaultValue !== undefined) return defaultValue;
     return 0;
