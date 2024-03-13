@@ -4,6 +4,7 @@ import { lazy } from "react";
 import type { AppRoute } from "./types";
 
 const Home = lazy(() => import("@/pages/Home"));
+const Create = lazy(() => import("@/pages/Create"));
 const Profile = lazy(() => import("@/pages/Profile"));
 const Signin = lazy(() => import("@/pages/Signin"));
 const Signup = lazy(() => import("@/pages/Signin/Signup"));
@@ -15,6 +16,14 @@ class RoutesMap {
     path: "",
     subRoutes: {},
     Element: Home,
+    // Skeleton: DashboardSkeleton,
+    kind: "private",
+  };
+  static CREATE: AppRoute = {
+    title: "Create",
+    path: "create",
+    subRoutes: {},
+    Element: Create,
     // Skeleton: DashboardSkeleton,
     kind: "private",
   };
