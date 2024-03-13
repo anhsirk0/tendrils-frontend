@@ -1,48 +1,31 @@
-import { IconLogout, IconUserCircle } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { IconPlus } from "@tabler/icons-react";
+import { Link, useLocation } from "react-router-dom";
 
-// local imports
-import { useAuthStore } from "@/store";
 import SelectTheme from "./SelectTheme";
+import UserDropdown from "./UserDropdown";
+import { RoutesMap } from "@/AppRoutes";
 
 const Navbar = () => {
-  const { plant, signout } = useAuthStore();
+  const location = useLocation();
 
   return (
     <div className="sticky top-0">
       <div className="navbar bg-base-100 border-b border-b-base-content/30">
         <div className="navbar-start">
-          <a className="btn btn-ghost text-xl">Tendrils</a>
+          <Link to={RoutesMap.HOME.path} className="btn btn-ghost text-xl">
+            Tendrils
+          </Link>
         </div>
         {/* <div className="navbar-center hidden lg:flex"></div> */}
-        <div className="navbar-end space-x-4">
+        <div className="navbar-end">
+          <Link
+            to={RoutesMap.CREATE.path}
+            className="btn btn-sm xl:btn-md xl:px-3 btn-ghost font-normal"
+          >
+            <IconPlus />
+          </Link>
           <SelectTheme />
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-primary btn-circle avatar"
-            >
-              {plant.name.charAt(0)}
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
-            >
-              <li>
-                <Link to="/me">
-                  <IconUserCircle />
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <button onClick={signout}>
-                  <IconLogout />
-                  Logout
-                </button>
-              </li>
-            </ul>
-          </div>
+          <UserDropdown key={location.pathname} />
         </div>
       </div>
     </div>

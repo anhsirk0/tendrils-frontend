@@ -2,6 +2,7 @@ import { FC, Fragment } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { PlantService } from "@/services";
+import { Loading } from "@/components";
 import { useCreds } from "@/hooks";
 import { Some } from "@/helpers";
 
@@ -23,7 +24,7 @@ const FollowingsList: FC = () => {
     return Some.Array(resp?.data?.data?.followings).map(toFollowee);
   }
 
-  const { data: followings } = useQuery({
+  const { data: followings, isLoading } = useQuery({
     queryKey: ["getFollowings", plant.plantname],
     queryFn: getFollowings,
     /* select: (data) => data.map(toFollowee), */
@@ -34,13 +35,17 @@ const FollowingsList: FC = () => {
   return (
     <Fragment>
       <p className="text-md">Followings ({followings.length})</p>
-      <div className="join join-vertical min-h-0 grow">
+      <Loading
+        on={isLoading}
+        component="div"
+        className="join join-vertical min-h-0 grow"
+      >
         {followings.map((f) => (
           <button key={f.id} className="btn join-item">
             {f.name} ({f.plantname})
           </button>
         ))}
-      </div>
+      </Loading>
     </Fragment>
   );
 };

@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className="p-4 grid grid-cols-9 lg:grid-cols-12 gap-4">
       {isLg && (
-        <div className="col-span-2 flex flex-col border-r border-b-base-content/30 px-4">
+        <div className="col-span-2 flex flex-col border-r border-r-base-content/30 px-4">
           <FollowingsList />
         </div>
       )}
