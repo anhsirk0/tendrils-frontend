@@ -9,7 +9,7 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <div className="sticky top-0">
+    <div className="sticky top-0 z-10">
       <div className="navbar bg-base-100 border-b border-b-base-content/30">
         <div className="navbar-start">
           <Link to={RoutesMap.HOME.path} className="btn btn-ghost text-xl">
