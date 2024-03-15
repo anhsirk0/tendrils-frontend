@@ -1,20 +1,40 @@
 import MDEditor from "@uiw/react-md-editor";
-import { useRecord } from "@/hooks";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import { TendrilService } from "@/services";
+import { Loading } from "@/components";
+import { useRecord, useApi, useCreds } from "@/hooks";
 
 const Create = () => {
   const [tendril, updateTendril] = useRecord({
     title: "",
     content: "",
   });
+  const navigate = useNavigate();
+  const plant = useCreds();
+
+  const { mutate, isPending } = useApi({
+    fn: async () => await TendrilService.create({ ...plant, data: tendril }),
+    onSuccess: () => {
+      toast.success("Tendril created successfully");
+      navigate("/");
+    },
+    onError: (resp) => toast.error(resp?.message || "Something went wrong"),
+  });
 
   return (
-    <div className="flex flex-col justify-center items-center grow">
+    <form
+      onSubmit={(e) => (e.preventDefault(), mutate())}
+      className="flex flex-col justify-center items-center grow"
+    >
       <div className="w-full grow p-2 md:py-4 gap-4">
         <div
           id="content"
           className="w-full h-full rounded-box border border-base-content/20"
         >
           <MDEditor
+            textareaProps={{ required: true }}
             onChange={(text) => updateTendril("content", text ?? "")}
             value={tendril.content}
           />
@@ -28,13 +48,22 @@ const Create = () => {
         <input
           type="text"
           placeholder="Title"
-          className="input input-bordered w-full"
+          className="input input-bordered grow"
           value={tendril.title}
           onChange={(e) => updateTendril("title", e.target.value)}
+          required
         />
-        <button className="btn btn-primary">Create Tendril</button>
+        <Loading
+          on={isPending}
+          component="button"
+          type="submit"
+          className="btn btn-primary shadow"
+          disabled={isPending}
+        >
+          Create Tendril
+        </Loading>
       </div>
-    </div>
+    </form>
   );
 };
 
