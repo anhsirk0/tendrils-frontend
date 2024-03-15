@@ -1,23 +1,17 @@
-import { instance } from "./config";
+import { addToken, createInstance } from "./config";
 
 export class PlantService {
-  static baseUrl = "/plants/";
+  static instance = createInstance("plants/");
 
   static getProfile(param: Dict) {
-    return instance.get(this.baseUrl + "profile/" + param.plantname, {
-      headers: { Authorization: "Bearer " + param.token },
-    });
+    return addToken(this.instance, param).get("profile/" + param.plantname);
   }
 
   static getFollowings(param: Dict) {
-    return instance.get(this.baseUrl + "followings/" + param.plantname, {
-      headers: { Authorization: "Bearer " + param.token },
-    });
+    return addToken(this.instance, param).get("followings/" + param.plantname);
   }
 
   static getFollowers(param: Dict) {
-    return instance.get(this.baseUrl + "followers/" + param.plantname, {
-      headers: { Authorization: "Bearer " + param.token },
-    });
+    return addToken(this.instance, param).get("followers/" + param.plantname);
   }
 }

@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
-import { clsx } from "clsx";
 
 // local imports
 import { AuthService } from "@/services";
@@ -21,6 +20,7 @@ const Signin = () => {
       const name = Some.String(resp?.data?.name);
       const token = Some.String(resp?.data?.token);
       signin({
+        id: Some.Number(resp?.data?.id),
         name,
         token,
         plantname: Some.String(resp?.data?.plantname),
@@ -64,10 +64,7 @@ const Signin = () => {
             on={isPending}
             component="button"
             type="submit"
-            className={clsx(
-              "btn btn-block btn-primary shadow",
-              isPending && "btn-disabled"
-            )}
+            className="btn btn-block btn-primary shadow"
             disabled={isPending}
           >
             Sign in

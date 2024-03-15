@@ -1,13 +1,13 @@
-import { instance } from "./config";
+import { createInstance } from "./config";
 
 export class AuthService {
-  static baseUrl = "/auth/";
+  static instance = createInstance("auth/");
 
   static login(param: Dict) {
-    return instance.post(this.baseUrl + "signin", param.data);
+    return this.instance.post("signin", param.data);
   }
 
   static signup(param: Dict) {
-    return instance.post(this.baseUrl + "signup", param.data);
+    return this.instance.post("signup", param.data);
   }
 }

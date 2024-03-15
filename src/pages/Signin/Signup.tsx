@@ -68,10 +68,7 @@ const SignUp = () => {
             on={isPending}
             component="button"
             type="submit"
-            className={clsx(
-              "btn btn-block btn-primary shadow",
-              isPending && "btn-disabled"
-            )}
+            className="btn btn-block btn-primary shadow"
             disabled={isPending}
           >
             Create Account

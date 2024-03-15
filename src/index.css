@@ -33,7 +33,7 @@
   --color-accent-emphasis: oklch(var(--bc)) !important;
   --color-attention-subtle: oklch(var(--bc)) !important;
   --color-danger-fg: oklch(var(--e)) !important;
-  --color-border-default: oklcha(var(--bc)) !important;
+  --color-border-default: oklch(var(--bc)) !important;
   /* --color-border-muted: hsla(210, 18%, 87%, 1); */
   /* --color-neutral-muted: rgba(175, 184, 193, 0.2); */
 

@@ -1,14 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export type Plant = {
-  name: string;
-  plantname: string;
-  token: string; // update later
-  isLoggedIn: boolean;
-};
-
 const emptyPlant: Plant = {
+  id: 0,
   name: "",
   plantname: "",
   token: "",
