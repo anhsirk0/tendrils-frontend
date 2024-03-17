@@ -1,7 +1,7 @@
-import { useCreds } from "@/hooks";
+import { usePlant } from "@/hooks";
 
 const Profile = () => {
-  const plant = useCreds();
+  const plant = usePlant().unwrap();
 
   return <div className="text-7xl text-center mt-[20vh]">{plant.name}</div>;
 };

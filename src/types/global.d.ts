@@ -7,5 +7,4 @@ declare type Plant = {
   name: string;
   plantname: string;
   token: string;
-  isLoggedIn?: boolean;
 };
