@@ -18,13 +18,11 @@ const Signin = () => {
     onSuccess: (resp) => {
       toast.dismiss("err");
       const name = Some.String(resp?.data?.name);
-      const token = Some.String(resp?.data?.token);
       signin({
         id: Some.Number(resp?.data?.id),
         name,
-        token,
+        token: Some.String(resp?.data?.token),
         plantname: Some.String(resp?.data?.plantname),
-        isLoggedIn: token.length > 37,
       });
       toast.success(`Welcome back, ${name}`);
     },

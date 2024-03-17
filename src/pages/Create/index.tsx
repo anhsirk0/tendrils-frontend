@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import { TendrilService } from "@/services";
 import { Loading } from "@/components";
-import { useRecord, useApi, useCreds } from "@/hooks";
+import { useRecord, useApi, usePlant } from "@/hooks";
 
 const Create = () => {
   const [tendril, updateTendril] = useRecord({
@@ -12,7 +12,7 @@ const Create = () => {
     content: "",
   });
   const navigate = useNavigate();
-  const plant = useCreds();
+  const plant = usePlant().unwrap();
 
   const { mutate, isPending } = useApi({
     fn: async () => await TendrilService.create({ ...plant, data: tendril }),

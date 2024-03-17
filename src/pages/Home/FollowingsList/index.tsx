@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { PlantService } from "@/services";
 import { Loading } from "@/components";
-import { useCreds } from "@/hooks";
+import { usePlant } from "@/hooks";
 import { Some } from "@/helpers";
 
 type Followee = { id: number; name: string; plantname: string };
@@ -17,7 +17,7 @@ function toFollowee(p: BackendData): Followee {
 }
 
 const FollowingsList: FC = () => {
-  const plant = useCreds();
+  const plant = usePlant().unwrap();
 
   async function getFollowings() {
     const resp = await PlantService.getFollowings(plant);
