@@ -1,8 +1,9 @@
 import { useAuthStore } from "@/store";
+import { Maybe, toMaybe } from "@/helpers";
 
-function usePlant() {
+function usePlant(): Maybe<Plant> {
   const { plant } = useAuthStore();
-  return plant;
+  return toMaybe(plant);
 }
 
 export default usePlant;

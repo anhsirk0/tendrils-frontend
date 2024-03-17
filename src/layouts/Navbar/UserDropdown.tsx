@@ -1,20 +1,22 @@
 import { IconLogout, IconUserCircle } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "@/store";
+import { usePlant } from "@/hooks";
 import { RoutesMap } from "@/AppRoutes";
 
 const UserDropdown = () => {
-  const { plant, signout } = useAuthStore();
+  const { signout } = useAuthStore();
+  const plant = usePlant();
 
   return plant
-    .run((plant) => (
+    .run((p) => (
       <div className="dropdown dropdown-end ml-3">
         <div
           tabIndex={0}
           role="button"
           className="btn btn-primary btn-circle avatar"
         >
-          {plant.name.charAt(0)}
+          {p.name.charAt(0)}
         </div>
         <ul
           tabIndex={0}
