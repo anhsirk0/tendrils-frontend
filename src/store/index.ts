@@ -1,8 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { toMaybe, Maybe } from "@/helpers";
-
 // const emptyPlant: Plant = {
 //   id: 0,
 //   name: "",
@@ -12,7 +10,7 @@ import { toMaybe, Maybe } from "@/helpers";
 // };
 
 export type StoreState = {
-  plant: Maybe<Plant>;
+  plant: Plant | null;
   signin: (plant: Plant) => void;
   signout: () => void;
 };
@@ -20,9 +18,9 @@ export type StoreState = {
 const useAuthStore = create<StoreState, [["zustand/persist", StoreState]]>(
   persist(
     (set) => ({
-      plant: toMaybe(),
-      signin: (plant: Plant) => set(() => ({ plant: toMaybe(plant) })),
-      signout: () => set(() => ({ plant: toMaybe() })),
+      plant: null,
+      signin: (plant: Plant) => set(() => ({ plant })),
+      signout: () => set(() => ({ plant: null })),
     }),
     { name: "tendrils-user-info" },
   ),
