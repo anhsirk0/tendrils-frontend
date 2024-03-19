@@ -23,7 +23,7 @@ const UserDropdown = () => {
           className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
         >
           <li>
-            <Link to={RoutesMap.PROFILE.path}>
+            <Link to={RoutesMap.PROFILE.path.replace(/:.*/, p.plantname)}>
               <IconUserCircle />
               Profile
             </Link>

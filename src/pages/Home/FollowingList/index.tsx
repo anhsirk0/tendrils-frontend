@@ -1,7 +1,7 @@
 import { FC, Fragment } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { PlantService } from "@/services";
+import { FollowService } from "@/services";
 import { Loading } from "@/components";
 import { usePlant } from "@/hooks";
 import { Some } from "@/helpers";
@@ -16,17 +16,17 @@ function toFollowee(p: BackendData): Followee {
   };
 }
 
-const FollowingsList: FC = () => {
+const FollowingList: FC = () => {
   const plant = usePlant().unwrap();
 
-  async function getFollowings() {
-    const resp = await PlantService.getFollowings(plant);
-    return Some.Array(resp?.data?.data?.followings).map(toFollowee);
+  async function getFollowing() {
+    const resp = await FollowService.getFollowing(plant);
+    return Some.Array(resp?.data?.data?.following).map(toFollowee);
   }
 
-  const { data: followings, isLoading } = useQuery({
-    queryKey: ["getFollowings", plant.plantname],
-    queryFn: getFollowings,
+  const { data: following, isLoading } = useQuery({
+    queryKey: ["getFollowing", plant.plantname],
+    queryFn: getFollowing,
     /* select: (data) => data.map(toFollowee), */
     refetchOnWindowFocus: false,
     initialData: [],
@@ -34,13 +34,13 @@ const FollowingsList: FC = () => {
 
   return (
     <Fragment>
-      <p className="text-md">Followings ({followings.length})</p>
+      <p className="text-md">Following ({following.length})</p>
       <Loading
         on={isLoading}
         component="div"
         className="join join-vertical min-h-0 grow"
       >
-        {followings.map((f) => (
+        {following.map((f) => (
           <button key={f.id} className="btn join-item">
             {f.name} ({f.plantname})
           </button>
@@ -50,4 +50,4 @@ const FollowingsList: FC = () => {
   );
 };
 
-export default FollowingsList;
+export default FollowingList;
