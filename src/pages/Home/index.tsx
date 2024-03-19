@@ -1,5 +1,5 @@
 import { useMediaQuery } from "@/hooks";
-import FollowingsList from "./FollowingsList";
+import FollowingList from "./FollowingList";
 
 const Home = () => {
   const isLg = useMediaQuery("lg");
@@ -8,7 +8,7 @@ const Home = () => {
     <div className="p-4 grid grid-cols-9 lg:grid-cols-12 gap-4">
       {isLg && (
         <div className="col-span-2 flex flex-col border-r border-r-base-content/30 px-4">
-          <FollowingsList />
+          <FollowingList />
         </div>
       )}
       <div className="col-span-6">Posts</div>
