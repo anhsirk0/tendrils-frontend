@@ -35,6 +35,7 @@
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.52.0",
     "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",

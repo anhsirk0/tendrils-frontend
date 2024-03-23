@@ -1,6 +1,5 @@
 import { FormEvent } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { clsx } from "clsx";
 import { toast } from "react-toastify";
 
 // local imports

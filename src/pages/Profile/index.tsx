@@ -12,7 +12,7 @@ import ProfileView from "./ProfileView";
 export interface PlantProfile extends Pick<Plant, "id" | "name" | "plantname"> {
   followersCount: number;
   followingCount: number;
-  postsCount: number;
+  tendrilsCount: number;
   isFollowed: boolean;
   createdAt: number;
 }
@@ -24,7 +24,7 @@ function toPlantProfile(p: BackendData): PlantProfile {
     plantname: Some.String(p?.plantname),
     followersCount: Some.Number(p?.followersCount),
     followingCount: Some.Number(p?.followingCount),
-    postsCount: Some.Number(p?.postsCount),
+    tendrilsCount: Some.Number(p?.tendrilsCount),
     isFollowed: Some.Boolean(p?.isFollowed),
     createdAt: Some.Number(p?.createdAt),
   };
@@ -63,7 +63,7 @@ const Profile = () => {
 };
 
 const NotFound: FC<{ name: string }> = ({ name }) => (
-  <div className="text-7xl text-center">User '{name}' not found</div>
+  <div className="text-7xl text-center">User &apos;{name}&apos; not found</div>
 );
 
 export default Profile;
