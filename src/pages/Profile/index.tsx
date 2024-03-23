@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, Navigate } from "react-router-dom";
 
@@ -6,10 +7,12 @@ import { Some } from "@/helpers";
 import { PlantService } from "@/services";
 import { Loading } from "@/components";
 import { RoutesMap } from "@/AppRoutes";
+import ProfileView from "./ProfileView";
 
-interface PlantProfile extends Pick<Plant, "id" | "name" | "plantname"> {
+export interface PlantProfile extends Pick<Plant, "id" | "name" | "plantname"> {
   followersCount: number;
   followingCount: number;
+  postsCount: number;
   isFollowed: boolean;
   createdAt: number;
 }
@@ -21,6 +24,7 @@ function toPlantProfile(p: BackendData): PlantProfile {
     plantname: Some.String(p?.plantname),
     followersCount: Some.Number(p?.followersCount),
     followingCount: Some.Number(p?.followingCount),
+    postsCount: Some.Number(p?.postsCount),
     isFollowed: Some.Boolean(p?.isFollowed),
     createdAt: Some.Number(p?.createdAt),
   };
@@ -48,18 +52,18 @@ const Profile = () => {
   if (!plantname) return <Navigate to={RoutesMap.HOME.path} />;
 
   return (
-    <Loading
-      on={isLoading}
-      component="div"
-      // className="join join-vertical min-h-0 grow"
-    >
+    <Loading on={isLoading} component="div" className="center h-full p-4">
       {profile ? (
-        <div className="text-7xl text-center mt-[20vh]">{plantname}</div>
+        <ProfileView profile={profile} />
       ) : (
-        <div className="text-7xl text-center mt-[20vh]">User not found</div>
+        <NotFound name={plantname} />
       )}
     </Loading>
   );
 };
+
+const NotFound: FC<{ name: string }> = ({ name }) => (
+  <div className="text-7xl text-center">User '{name}' not found</div>
+);
 
 export default Profile;

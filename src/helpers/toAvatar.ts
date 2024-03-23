@@ -1,6 +1,6 @@
 function toAvatar(fullName: string) {
-  let name = fullName.split(" ");
-  let firstName = name[0];
+  const name = fullName.split(" ");
+  const firstName = name[0];
   let middleName = "";
   let lastName = "";
 
