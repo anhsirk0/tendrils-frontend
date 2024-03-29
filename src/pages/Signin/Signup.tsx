@@ -19,7 +19,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
   const { mutate, isPending } = useApi({
-    fn: async () => await AuthService.signup({ data: info }),
+    fn: () => AuthService.signup({ data: info }),
     onSuccess: () => {
       toast.success("Account created successfully, you can login now");
       navigate("/");

@@ -14,7 +14,7 @@ const Signin = () => {
   const [info, updateInfo] = useRecord({ plantname: "", password: "" });
 
   const { mutate, isPending } = useApi({
-    fn: async () => await AuthService.login({ data: info }),
+    fn: () => AuthService.login({ data: info }),
     onSuccess: (resp) => {
       toast.dismiss("err");
       const name = Some.String(resp?.data?.name);
@@ -68,7 +68,7 @@ const Signin = () => {
             Sign in
           </Loading>
           <p className="mt-4 text-sm text-center">
-            Don't Have An Account? {""}
+            Don&apos;t Have An Account? {""}
             <NavLink
               to={RoutesMap.SIGNUP.path}
               className="underline cursor-pointer"

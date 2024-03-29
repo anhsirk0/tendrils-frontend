@@ -15,7 +15,7 @@ const Create = () => {
   const plant = usePlant().unwrap();
 
   const { mutate, isPending } = useApi({
-    fn: async () => await TendrilService.create({ ...plant, data: tendril }),
+    fn: () => TendrilService.create({ ...plant, data: tendril }),
     onSuccess: () => {
       toast.success("Tendril created successfully");
       navigate("/");
