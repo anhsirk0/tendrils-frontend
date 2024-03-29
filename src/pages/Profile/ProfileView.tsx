@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { clsx } from "clsx";
 
 import { usePlant } from "@/hooks";
 import { toAvatar } from "@/helpers";
 import type { PlantProfile } from "./index";
+import FollowButton from "./FollowButton";
 
 interface Props {
   profile: PlantProfile;
@@ -35,14 +35,7 @@ const ProfileView: FC<Props> = ({ profile }) => {
                 isMe ? (
                   <div className="badge badge-primary xl:badge-xl">you</div>
                 ) : (
-                  <button
-                    className={clsx(
-                      "btn btn-sm xl:btn-md btn-primary capitalize",
-                      profile.isFollowed && "btn-outline",
-                    )}
-                  >
-                    {profile.isFollowed && "un"}follow
-                  </button>
+                  <FollowButton profile={profile} />
                 ),
               )
               .unwrapNull()}
@@ -53,11 +46,9 @@ const ProfileView: FC<Props> = ({ profile }) => {
               { label: "Following", value: profile.followingCount },
               { label: "Followers", value: profile.followersCount },
             ].map((info) => (
-              <p key={info.label}>
-                {info.value}
-                <span className="pl-2 md:pl-3 xl:pl-4 text-base-content/60">
-                  {info.label}
-                </span>
+              <p key={info.label} className="link link-hover" role="button">
+                {info.value}{" "}
+                <span className="text-base-content/60">{info.label}</span>
               </p>
             ))}
           </div>

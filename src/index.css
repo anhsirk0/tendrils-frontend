@@ -8,7 +8,7 @@
 
 .Toastify__toast-theme--light,
 .Toastify__toast-theme--dark {
-  @apply bg-base-200 text-base-content;
+  @apply bg-base-100 text-base-content;
   border-radius: var(--rounded-box);
 }
 

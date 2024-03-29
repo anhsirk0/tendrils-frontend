@@ -1,12 +1,15 @@
 import { FC } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useParams, Navigate } from "react-router-dom";
 
-import { usePlant } from "@/hooks";
-import { Some } from "@/helpers";
-import { PlantService } from "@/services";
+// other imports
+import { Navigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+
+// local imports
 import { Loading } from "@/components";
+import { PlantService } from "@/services";
 import { RoutesMap } from "@/AppRoutes";
+import { Some } from "@/helpers";
+import { usePlant } from "@/hooks";
 import ProfileView from "./ProfileView";
 
 export interface PlantProfile extends Pick<Plant, "id" | "name" | "plantname"> {
