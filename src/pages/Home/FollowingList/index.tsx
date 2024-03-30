@@ -5,16 +5,7 @@ import { FollowService } from "@/services";
 import { Loading } from "@/components";
 import { usePlant } from "@/hooks";
 import { Some } from "@/helpers";
-
-type Followee = { id: number; name: string; plantname: string };
-
-function toFollowee(p: BackendData): Followee {
-  return {
-    id: Some.Number(p?.id),
-    name: Some.String(p?.name),
-    plantname: Some.String(p?.plantname),
-  };
-}
+import { toFollowee } from "../helpers";
 
 const FollowingList: FC = () => {
   const plant = usePlant().unwrap();
