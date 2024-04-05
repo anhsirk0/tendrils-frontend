@@ -26,11 +26,7 @@ const FollowingList: FC = () => {
   return (
     <Fragment>
       <p className="text-md">Following ({following.length})</p>
-      <Loading
-        on={isLoading}
-        component="div"
-        className="join join-vertical min-h-0 grow"
-      >
+      <Loading div on={isLoading} className="join join-vertical min-h-0 grow">
         {following.map((f) => (
           <button key={f.id} className="btn join-item">
             {f.name} ({f.plantname})

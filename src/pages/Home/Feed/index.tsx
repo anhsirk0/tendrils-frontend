@@ -27,12 +27,8 @@ const Feed: FC = () => {
 
   return (
     <Fragment>
-      <p className="text-md">Feed</p>
-      <Loading
-        on={isLoading}
-        component="div"
-        className="flex  flex-col [&>*]:w-full"
-      >
+      <p className="text-md mb-4">Feed</p>
+      <Loading div on={isLoading} className="flex flex-col [&>*]:w-full gap-4">
         {tendrils.map((tendril) => (
           <TendrilItem tendril={tendril} key={tendril.id} />
         ))}

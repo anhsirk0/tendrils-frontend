@@ -13,6 +13,7 @@ interface LoadingProps<C> {
   color?: Color;
   component?: C;
   Loader?: ReactNode;
+  div?: boolean;
 }
 
 function Loading<C extends ElementType>({
@@ -21,12 +22,13 @@ function Loading<C extends ElementType>({
   children,
   color,
   Loader,
+  div,
   ...rest
 }: LoadingProps<C> & ComponentPropsWithoutRef<C>) {
   return createElement(
-    component || Fragment,
-    component ? rest : {},
-    on ? Loader || <DefaultLoader color={color} /> : children,
+    component ?? div ? "div" : Fragment,
+    div || component ? rest : {},
+    on ? Loader || <DefaultLoader color={color} /> : children
   );
 }
 
