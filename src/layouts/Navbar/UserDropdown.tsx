@@ -1,8 +1,13 @@
+// icons imports
 import { IconLogout, IconUserCircle } from "@tabler/icons-react";
+
+// other imports
 import { Link } from "react-router-dom";
-import { useAuthStore } from "@/store";
-import { usePlant } from "@/hooks";
+
+// local imports
 import { RoutesMap } from "@/AppRoutes";
+import { usePlant } from "@/hooks";
+import { useAuthStore } from "@/store";
 
 const UserDropdown = () => {
   const { signout } = useAuthStore();
@@ -29,10 +34,10 @@ const UserDropdown = () => {
             </Link>
           </li>
           <li>
-            <button onClick={signout}>
+            <Link to="/" onClick={signout}>
               <IconLogout />
               Logout
-            </button>
+            </Link>
           </li>
         </ul>
       </div>

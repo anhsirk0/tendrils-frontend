@@ -40,7 +40,7 @@ const SignUp = () => {
     <div className="card bg-base-100 shadow-xl z-20 animate-twirl">
       <div className="card-body p-12">
         <h1 className="text-3xl font-bold text-center mb-2">Create Account!</h1>
-        <p className="w-80 text-center text-sm mb-8 font-semibold text-base-content/60">
+        <p className="w-80 text-center text-sm mb-8 font-semibold text-60">
           Create your Tendrils account
         </p>
         <form onSubmit={onSubmit} className="flex flex-col gap-4">

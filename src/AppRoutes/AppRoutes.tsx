@@ -21,7 +21,9 @@ const AppRoutes = () => {
             {allRoutes["public"].map(GetRoute)}
           </Route>
         )}
-        {/* {allRoutes["independent"].map(GetRoute)} */}
+        <Route path="/" element={<Layout />}>
+          {allRoutes["independent"].map(GetRoute)}
+        </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

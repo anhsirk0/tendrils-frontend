@@ -23,6 +23,9 @@ export default {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    require("tailwindcss-radix")({ variantPrefix: "rdx" }),
+  ],
   daisyui: { themes },
 };

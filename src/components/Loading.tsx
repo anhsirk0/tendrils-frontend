@@ -26,7 +26,7 @@ function Loading<C extends ElementType>({
   ...rest
 }: LoadingProps<C> & ComponentPropsWithoutRef<C>) {
   return createElement(
-    component ?? div ? "div" : Fragment,
+    component ?? (div ? "div" : Fragment),
     div || component ? rest : {},
     on ? Loader || <DefaultLoader color={color} /> : children
   );

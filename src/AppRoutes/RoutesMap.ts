@@ -59,7 +59,7 @@ class RoutesMap {
     subRoutes: {},
     Element: Profile,
     // Skeleton: DashboardSkeleton,
-    kind: "private",
+    kind: "independent",
   };
   // static CONTROL_TOWER_SIGNIN: AppRoute = {
   //   title: "Control Tower Login",

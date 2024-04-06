@@ -31,7 +31,7 @@ const TendrilsList: FC<Props> = ({ plantname, total }) => {
   });
 
   return (
-    <Loading div on={isLoading} className="flex flex-col gap-4">
+    <Loading div on={isLoading} className="flex flex-col gap-4" id="tendrils">
       <p className="text-base-content">Tendrils ({total})</p>
       {tendrils.map((tendril) => (
         <TendrilItem tendril={tendril} key={tendril.id} />

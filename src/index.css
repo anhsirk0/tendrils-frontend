@@ -102,3 +102,15 @@
 .w-md-editor-text-input {
   @apply !text-base-content;
 }
+
+.text-40 {
+  @apply text-base-content/40;
+}
+
+.text-60 {
+  @apply text-base-content/60;
+}
+
+.text-80 {
+  @apply text-base-content/80;
+}
