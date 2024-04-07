@@ -3,6 +3,7 @@ import { FC, Fragment } from "react";
 import { Loading } from "@/components";
 import { usePlant } from "@/hooks";
 import { useFollowing } from "../helpers";
+import FollowItem from "./FollowItem";
 
 const FollowingList: FC = () => {
   const plant = usePlant().unwrap();
@@ -11,11 +12,13 @@ const FollowingList: FC = () => {
   return (
     <Fragment>
       <p className="text-md">Following ({following.length})</p>
-      <Loading div on={isLoading} className="join join-vertical min-h-0 grow">
-        {following.map((f) => (
-          <button key={f.id} className="btn join-item">
-            {f.name} ({f.plantname})
-          </button>
+      <Loading
+        div
+        on={isLoading}
+        className="flex flex-col min-h-0 overflow-auto"
+      >
+        {following.map((plant) => (
+          <FollowItem followee={plant} key={plant.id} compact />
         ))}
       </Loading>
     </Fragment>

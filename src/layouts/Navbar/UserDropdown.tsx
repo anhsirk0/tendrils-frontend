@@ -19,7 +19,7 @@ const UserDropdown = () => {
         <div
           tabIndex={0}
           role="button"
-          className="btn btn-primary btn-circle avatar"
+          className="btn btn-primary btn-circle btn-sm 2xl:btn-md avatar"
         >
           {p.name.charAt(0)}
         </div>

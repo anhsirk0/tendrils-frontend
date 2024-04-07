@@ -14,7 +14,7 @@ const SelectTheme = () => {
       <div className="hidden" data-set-theme="" data-key="tendrils-theme" />
       <label
         tabIndex={0}
-        className="btn btn-sm xl:btn-md xl:px-3 btn-ghost font-normal"
+        className="btn btn-sm 2xl:btn-md 2xl:px-3 btn-ghost font-normal"
       >
         <IconColorSwatch className="text-accent" />
       </label>

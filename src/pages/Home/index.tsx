@@ -12,10 +12,10 @@ const Home = () => {
           <FollowingList />
         </div>
       )}
-      <div className="col-span-6">
+      <div className="col-span-9 lg:col-span-6">
         <Feed />
       </div>
-      <div className="col-span-4">Extra</div>
+      {isLg && <div className="col-span-4">Extra</div>}
     </div>
   );
 };

@@ -6,6 +6,8 @@ function toFollowee(p: BackendData): Followee {
     id: Some.Number(p?.id),
     name: Some.String(p?.name),
     plantname: Some.String(p?.plantname),
+    isMe: Some.Boolean(p?.isMe),
+    isFollowed: Some.Boolean(p?.isFollowed),
   };
 }
 

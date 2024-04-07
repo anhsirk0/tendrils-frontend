@@ -1,14 +1,15 @@
 import { FC } from "react";
 
+// other imports
 import { useQuery } from "@tanstack/react-query";
 
 // local imports
 import { Loading } from "@/components";
-import { TendrilService } from "@/services";
-import { usePlant } from "@/hooks";
-import { Tendril } from "@/pages/Home/types";
-import { toTendril } from "@/pages/Home/helpers";
 import { Some } from "@/helpers";
+import { usePlant } from "@/hooks";
+import { toTendril } from "@/pages/Home/helpers";
+import { Tendril } from "@/pages/Home/types";
+import { TendrilService } from "@/services";
 
 interface Props {
   plantname: string;
@@ -46,7 +47,7 @@ interface TendrilItemProps {
 
 export const TendrilItem: FC<TendrilItemProps> = ({ tendril }) => {
   return (
-    <div className="card bg-base-100 border border-neutral">
+    <div className="card bg-base-100 border border-neutral rounded-btn">
       <div className="card-body">
         <h2 className="card-title">{tendril.title}</h2>
         <p className="clamp-4">{tendril.content}</p>

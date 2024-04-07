@@ -7,4 +7,7 @@ export type Tendril = {
   curls: Array<string>;
 };
 
-export type Followee = Pick<Plant, "id" | "name" | "plantname">;
+export type Followee = Pick<Plant, "id" | "name" | "plantname"> & {
+  isMe: boolean;
+  isFollowed: boolean;
+};

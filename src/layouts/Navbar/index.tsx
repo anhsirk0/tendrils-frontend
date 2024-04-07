@@ -10,9 +10,12 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-10">
-      <div className="navbar bg-base-100 border-b border-b-base-content/30">
+      <div className="navbar bg-base-100 border-b border-b-base-content/30 min-h-[2rem] 2xl:min-h-[4rem]">
         <div className="navbar-start">
-          <Link to={RoutesMap.HOME.path} className="btn btn-ghost text-xl">
+          <Link
+            to={RoutesMap.HOME.path}
+            className="btn btn-ghost btn-sm 2xl:btn-md 2xl:text-xl"
+          >
             Tendrils
           </Link>
         </div>
@@ -20,7 +23,7 @@ const Navbar = () => {
         <div className="navbar-end">
           <Link
             to={RoutesMap.CREATE.path}
-            className="btn btn-sm xl:btn-md xl:px-3 btn-ghost font-normal"
+            className="btn btn-sm 2xl:btn-md 2xl:px-3 btn-ghost font-normal"
           >
             <IconPlus />
           </Link>

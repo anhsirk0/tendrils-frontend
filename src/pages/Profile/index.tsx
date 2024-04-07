@@ -18,6 +18,7 @@ export interface PlantProfile extends Pick<Plant, "id" | "name" | "plantname"> {
   tendrilsCount: number;
   isFollowed: boolean;
   createdAt: number;
+  isMe: boolean;
 }
 
 function toPlantProfile(p: BackendData): PlantProfile {
@@ -29,6 +30,7 @@ function toPlantProfile(p: BackendData): PlantProfile {
     followingCount: Some.Number(p?.followingCount),
     tendrilsCount: Some.Number(p?.tendrilsCount),
     isFollowed: Some.Boolean(p?.isFollowed),
+    isMe: Some.Boolean(p?.isMe),
     createdAt: Some.Number(p?.createdAt),
   };
 }
