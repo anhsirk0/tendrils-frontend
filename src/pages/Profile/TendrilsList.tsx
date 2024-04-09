@@ -34,9 +34,11 @@ const TendrilsList: FC<Props> = ({ plantname, total }) => {
   return (
     <Loading div on={isLoading} className="flex flex-col gap-4" id="tendrils">
       <p className="text-base-content">Tendrils ({total})</p>
-      {tendrils.map((tendril) => (
-        <TendrilItem tendril={tendril} key={tendril.id} />
-      ))}
+      <div className="grid grid-cols-12 gap-4 2xl:gap-12">
+        {tendrils.map((tendril) => (
+          <TendrilItem tendril={tendril} key={tendril.id} />
+        ))}
+      </div>
     </Loading>
   );
 };
@@ -45,12 +47,14 @@ interface TendrilItemProps {
   tendril: Tendril;
 }
 
-export const TendrilItem: FC<TendrilItemProps> = ({ tendril }) => {
+const TendrilItem: FC<TendrilItemProps> = ({ tendril }) => {
   return (
-    <div className="card bg-base-100 border border-neutral rounded-btn">
-      <div className="card-body">
-        <h2 className="card-title">{tendril.title}</h2>
-        <p className="clamp-4">{tendril.content}</p>
+    <div className="col-span-12 md:col-span-6 2xl:col-span-4">
+      <div className="card bg-base-100 border border-neutral rounded-btn h-80">
+        <div className="card-body">
+          <h2 className="card-title">{tendril.title}</h2>
+          <p className="line-clamp-4">{tendril.content}</p>
+        </div>
       </div>
     </div>
   );

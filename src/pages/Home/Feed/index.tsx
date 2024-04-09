@@ -8,7 +8,7 @@ import { Loading } from "@/components";
 import { Some } from "@/helpers";
 import { usePlant } from "@/hooks";
 import { TendrilService } from "@/services";
-import { toTendril } from "../helpers";
+import { toFeedTendril } from "../helpers";
 import FeedItem from "./FeedItem";
 
 const Feed: FC = () => {
@@ -16,7 +16,7 @@ const Feed: FC = () => {
 
   async function getFeed() {
     const resp = await TendrilService.getFeed({ token });
-    return Some.Array(resp?.data?.data?.data).map(toTendril);
+    return Some.Array(resp?.data?.data?.data).map(toFeedTendril);
   }
 
   const { data: tendrils, isLoading } = useQuery({

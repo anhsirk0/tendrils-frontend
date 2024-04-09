@@ -9,6 +9,7 @@ function toTendril(t: BackendData): Tendril {
     uuid: Some.String(t?.uuid),
     createdAt: Some.Number(t?.createdAt),
     curls: Some.Array(t?.curls).map((c) => Some.String(c?.plantname)),
+    commentsCount: Some.Number(t?.commentsCount),
   };
 }
 

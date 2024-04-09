@@ -26,9 +26,9 @@ const Create = () => {
   return (
     <form
       onSubmit={(e) => (e.preventDefault(), mutate())}
-      className="flex flex-col justify-center items-center grow"
+      className="flex flex-col center grow min-h-0"
     >
-      <div className="w-full grow p-2 md:py-4 gap-4">
+      <div className="w-full grow p-2 md:py-4 gap-4 min-h-0 overflow-auto">
         <div
           id="content"
           className="w-full h-full rounded-box border border-base-content/20"
