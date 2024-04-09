@@ -49,7 +49,7 @@ interface TendrilItemProps {
 
 const TendrilItem: FC<TendrilItemProps> = ({ tendril }) => {
   return (
-    <div className="col-span-12 md:col-span-6 2xl:col-span-4">
+    <div className="col-span-12 md:col-span-6">
       <div className="card bg-base-100 border border-neutral rounded-btn h-80">
         <div className="card-body">
           <h2 className="card-title">{tendril.title}</h2>

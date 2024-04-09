@@ -18,8 +18,8 @@ const ProfileView: FC<Props> = ({ profile }) => {
     profile;
 
   return (
-    <div className="flex flex-col h-full scroll-smooth w-full md:w-auto">
-      <div className="flex items-center gap-4 md:gap-8 2xl:gap-16 md:mt-2 2xl:mt-8">
+    <div className="flex flex-col h-full scroll-smooth max-w-6xl">
+      <div className="flex items-center gap-4 md:gap-8 2xl:gap-16 md:mt-2 2xl:mt-8 w-full">
         <div className="avatar placeholder">
           <div className="bg-neutral text-2xl md:text-4xl 2xl:text-6xl text-neutral-content rounded-btn w-40 2xl:w-52">
             {toAvatar(name)}
@@ -44,7 +44,7 @@ const ProfileView: FC<Props> = ({ profile }) => {
           </div>
         </div>
       </div>
-      <div className="grow">
+      <div className="grow w-full">
         <div className="divider py-2 2xl:py-4" />
         <TendrilsList plantname={plantname} total={tendrilsCount} />
       </div>

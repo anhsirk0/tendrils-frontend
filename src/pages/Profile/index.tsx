@@ -57,7 +57,7 @@ const Profile = () => {
   if (!plantname) return <Navigate to={RoutesMap.HOME.path} />;
 
   return (
-    <Loading div on={isLoading} className="center h-full p-4">
+    <Loading div on={isLoading} className="center h-full w-full p-4">
       {profile ? (
         <ProfileView profile={profile} key={plantname} />
       ) : (
