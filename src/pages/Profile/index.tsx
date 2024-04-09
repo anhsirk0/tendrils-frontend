@@ -37,13 +37,10 @@ function toPlantProfile(p: BackendData): PlantProfile {
 
 const Profile = () => {
   const { plantname } = useParams();
-  const plant = usePlant();
+  const token = usePlant().get("token").unwrapUndef();
 
   async function getProfile() {
-    const resp = await PlantService.getProfile({
-      plantname,
-      token: plant.get("token").unwrapUndef(),
-    });
+    const resp = await PlantService.getProfile({ plantname, token });
     return toPlantProfile(resp?.data?.data);
   }
 
