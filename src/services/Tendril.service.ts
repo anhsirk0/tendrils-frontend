@@ -14,7 +14,7 @@ export class TendrilService {
     return addToken(this.instance, param).get("all/" + param.plantname);
   }
 
-  static getOne(param: Dict) {
+  static get(param: Dict) {
     return addToken(this.instance, param).get(param.uuid);
   }
 }
