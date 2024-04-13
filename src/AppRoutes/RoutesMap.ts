@@ -6,6 +6,7 @@ import type { AppRoute } from "./types";
 const Home = lazy(() => import("@/pages/Home"));
 const Create = lazy(() => import("@/pages/Create"));
 const Profile = lazy(() => import("@/pages/Profile"));
+const Tendril = lazy(() => import("@/pages/Tendril"));
 const Signin = lazy(() => import("@/pages/Signin"));
 const Signup = lazy(() => import("@/pages/Signin/Signup"));
 
@@ -58,6 +59,15 @@ class RoutesMap {
     path: "p/:plantname",
     subRoutes: {},
     Element: Profile,
+    // Skeleton: DashboardSkeleton,
+    kind: "independent",
+  };
+
+  static TENDRILS: AppRoute = {
+    title: "Tendril",
+    path: "t/:uuid",
+    subRoutes: {},
+    Element: Tendril,
     // Skeleton: DashboardSkeleton,
     kind: "independent",
   };

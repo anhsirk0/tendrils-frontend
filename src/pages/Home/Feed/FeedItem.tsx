@@ -9,7 +9,7 @@ import { clsx } from "clsx";
 import { useNavigate, Link } from "react-router-dom";
 
 // local imports
-import { toAvatar, toProfileLink } from "@/helpers";
+import { toAvatar, toProfileLink, toTendrilLink } from "@/helpers";
 import { useMediaQuery } from "@/hooks";
 import { FeedTendril } from "@/pages/Home/types";
 
@@ -27,7 +27,7 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
     <div
       role="button"
       className="p-4 md:p-6 2xl:p-8 flex flex-col gap-2 md:gap-4 border border-base-content/10 rounded-btn hover:bg-base-content/5"
-      onClick={() => navigate(toProfileLink(tendril.author.plantname))}
+      onClick={() => navigate(toTendrilLink(tendril.uuid))}
     >
       <h2 className="text-lg md:text-xl 2xl:text-2xl font-bold line-clamp-1">
         {tendril.title}
