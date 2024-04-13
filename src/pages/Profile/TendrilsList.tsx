@@ -1,6 +1,10 @@
 import { FC } from "react";
 
+// icons imports
+import { IconHeart, IconMessage } from "@tabler/icons-react";
+
 // other imports
+import { format } from "date-fns";
 import { useQuery } from "@tanstack/react-query";
 
 // local imports
@@ -53,7 +57,29 @@ const TendrilItem: FC<TendrilItemProps> = ({ tendril }) => {
       <div className="card bg-base-100 border border-neutral rounded-btn h-80">
         <div className="card-body">
           <h2 className="card-title">{tendril.title}</h2>
-          <p className="line-clamp-4">{tendril.content}</p>
+          <pre className="line-clamp-6">{tendril.content}</pre>
+          <div className="card-actions gap-4 mt-auto">
+            <div className="flex gap-4 items-center">
+              <button className="active:scale-150 transition">
+                <IconHeart className="text-base-content" size={32} />
+              </button>
+              <p className="text-base-content text-2xl font-medium">
+                {tendril.curls.length}
+              </p>
+            </div>
+            <div className="flex gap-4 items-center">
+              <button className="active:scale-150 transition">
+                <IconMessage className="text-base-content" size={32} />
+              </button>
+              <p className="text-base-content text-2xl font-medium">
+                {tendril.commentsCount}
+              </p>
+            </div>
+            <div className="grow" />
+            <span className="text-sm md:text-md 2xl:text-xl">
+              {format(tendril.createdAt, "dd-MM-yyyy")}
+            </span>
+          </div>
         </div>
       </div>
     </div>

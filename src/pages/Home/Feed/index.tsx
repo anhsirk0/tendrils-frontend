@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 
 // other imports
 import { useQuery } from "@tanstack/react-query";
@@ -28,12 +28,12 @@ const Feed: FC = () => {
   });
 
   return (
-    <Fragment>
+    <div className="col-span-9 lg:col-span-7 h-full min-h-0 overflow-y-auto">
       <p className="text-md mb-4">Feed</p>
       <Loading
         div
         on={isLoading}
-        className="flex flex-col [&>*]:w-full gap-4 min-h-0 h-full"
+        className="flex flex-col gap-4 min-h-0 h-full md:pr-4"
       >
         {tendrils.map((tendril) => (
           <FeedItem tendril={tendril} key={tendril.id} />
@@ -46,7 +46,7 @@ const Feed: FC = () => {
           </div>
         )}
       </Loading>
-    </Fragment>
+    </div>
   );
 };
 
