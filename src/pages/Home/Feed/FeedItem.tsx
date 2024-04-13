@@ -77,7 +77,7 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
   );
 };
 
-export const AuthorInfo: FC<FeedTendril["author"]> = ({ plantname, name }) => (
+const AuthorInfo: FC<FeedTendril["author"]> = ({ plantname, name }) => (
   <Link
     to={toProfileLink(plantname)}
     onClick={(e) => e.stopPropagation()}
