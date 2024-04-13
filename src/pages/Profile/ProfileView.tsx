@@ -46,7 +46,7 @@ const ProfileView: FC<Props> = ({ profile }) => {
       </div>
       <div className="grow w-full">
         <div className="divider py-2 2xl:py-4" />
-        <TendrilsList plantname={plantname} total={tendrilsCount} />
+        <TendrilsList plant={{ plantname, name }} total={tendrilsCount} />
       </div>
     </div>
   );

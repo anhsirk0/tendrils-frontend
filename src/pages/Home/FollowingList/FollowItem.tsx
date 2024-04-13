@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { clsx } from "clsx";
 
 // local imports
-import { RoutesMap } from "@/AppRoutes";
-import { toAvatar } from "@/helpers";
+import { toAvatar, toProfileLink } from "@/helpers";
 import { Followee } from "@/pages/Home/types";
 import FollowButton from "@/pages/Profile/FollowButton";
 
@@ -17,15 +16,12 @@ interface Props {
 
 const FollowItem: FC<Props> = ({ followee, compact }) => {
   const navigate = useNavigate();
-  function onClick() {
-    navigate("/" + RoutesMap.PROFILE.path.replace(/:.*/, followee.plantname));
-  }
 
   return (
     <div
       role="button"
       className="btn-ghost rounded-btn flex flex-row gap-4 items-center p-2"
-      onClick={onClick}
+      onClick={() => navigate(toProfileLink(followee.plantname))}
     >
       <div className="avatar placeholder">
         <div
@@ -41,7 +37,9 @@ const FollowItem: FC<Props> = ({ followee, compact }) => {
         <p
           className={clsx(
             "truncate",
-            compact ? "text-sm md:text-md 2xl:text-xl" : "md:text-xl 2xl:text-2xl"
+            compact
+              ? "text-sm md:text-md 2xl:text-xl"
+              : "md:text-xl 2xl:text-2xl"
           )}
         >
           {followee.name}
