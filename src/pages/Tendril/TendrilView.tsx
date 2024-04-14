@@ -15,24 +15,22 @@ interface Props {
   tendril: FeedTendril;
 }
 
-const TendrilView: FC<Props> = ({ tendril }) => {
-  return (
-    <div className="flex flex-col h-full w-full max-w-7xl gap-4 2xl:gap-8">
-      <div className="flex w-full justify-between items-end border-b border-b-base-content/30 pb-1">
-        <div className="text-5xl pb-1 truncate">{tendril.title}</div>
-        <AuthorInfo {...tendril.author} />
-      </div>
-      <MDEditor.Markdown source={tendril.content} />
-      <div
-        id="tendril-comments"
-        className="py-2 border-t border-t-base-content/30"
-      >
-        comments
-      </div>
-      <FloatingActions />
+const TendrilView: FC<Props> = ({ tendril }) => (
+  <div className="flex flex-col h-full w-full max-w-7xl gap-4 2xl:gap-8">
+    <div className="flex w-full justify-between items-end border-b border-b-base-content/30 pb-1">
+      <div className="text-5xl pb-1 truncate">{tendril.title}</div>
+      <AuthorInfo {...tendril.author} />
     </div>
-  );
-};
+    <MDEditor.Markdown source={tendril.content} />
+    <div
+      id="tendril-comments"
+      className="py-2 border-t border-t-base-content/30"
+    >
+      comments
+    </div>
+    <FloatingActions />
+  </div>
+);
 
 const AuthorInfo: FC<FeedTendril["author"]> = ({ plantname, name }) => (
   <Link

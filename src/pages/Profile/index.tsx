@@ -1,6 +1,3 @@
-import { FC } from "react";
-
-// other imports
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
