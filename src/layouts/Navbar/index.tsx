@@ -21,12 +21,14 @@ const Navbar = () => {
         </div>
         {/* <div className="navbar-center hidden lg:flex"></div> */}
         <div className="navbar-end">
-          <Link
-            to={RoutesMap.CREATE.path}
-            className="btn btn-sm 2xl:btn-md 2xl:px-3 btn-ghost font-normal"
-          >
-            <IconPlus />
-          </Link>
+          <div className="tooltip tooltip-bottom" data-tip="Create Tendril">
+            <Link
+              to={RoutesMap.CREATE.path}
+              className="btn btn-sm 2xl:btn-md 2xl:px-3 btn-ghost font-normal"
+            >
+              <IconPlus />
+            </Link>
+          </div>
           <SelectTheme />
           <UserDropdown key={location.pathname} />
         </div>

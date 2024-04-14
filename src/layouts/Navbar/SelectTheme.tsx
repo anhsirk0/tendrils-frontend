@@ -12,15 +12,20 @@ const SelectTheme = () => {
   return (
     <div className="dropdown dropdown-bottom dropdown-end">
       <div className="hidden" data-set-theme="" data-key="tendrils-theme" />
-      <label
-        tabIndex={0}
-        className="btn btn-sm 2xl:btn-md 2xl:px-3 btn-ghost font-normal"
+      <div
+        className="tooltip tooltip-bottom tooltip-accent"
+        data-tip="Change theme"
       >
-        <IconColorSwatch className="text-accent" />
-      </label>
+        <label
+          tabIndex={0}
+          className="btn btn-sm 2xl:btn-md 2xl:px-3 btn-ghost font-normal"
+        >
+          <IconColorSwatch className="text-accent" />
+        </label>
+      </div>
       <div
         tabIndex={0}
-        className="dropdown-content z-[1] flex flex-col gap-2 p-4 bg-neutral rounded-box h-80 min-h-0 overflow-y-auto mb-4 w-52 shadow-xl"
+        className="dropdown-content z-[1] flex flex-col gap-2 p-4 bg-accent rounded-box h-96 min-h-0 overflow-y-auto mb-4 w-52 shadow-xl"
       >
         {themes.map((theme) => (
           <div

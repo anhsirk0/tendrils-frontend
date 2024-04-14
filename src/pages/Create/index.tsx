@@ -1,16 +1,14 @@
 import MDEditor from "@uiw/react-md-editor";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-import { TendrilService } from "@/services";
+// local imports
 import { Loading } from "@/components";
-import { useRecord, useApi, usePlant } from "@/hooks";
+import { useApi, usePlant, useRecord } from "@/hooks";
+import { TendrilService } from "@/services";
 
 const Create = () => {
-  const [tendril, updateTendril] = useRecord({
-    title: "",
-    content: "",
-  });
+  const [tendril, updateTendril] = useRecord({ title: "", content: "" });
   const navigate = useNavigate();
   const plant = usePlant().unwrap();
 

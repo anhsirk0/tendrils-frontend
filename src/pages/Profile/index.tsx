@@ -5,7 +5,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 // local imports
-import { Loading } from "@/components";
+import { Loading, NotFound } from "@/components";
 import { PlantService } from "@/services";
 import { RoutesMap } from "@/AppRoutes";
 import { Some } from "@/helpers";
@@ -58,14 +58,10 @@ const Profile = () => {
       {profile ? (
         <ProfileView profile={profile} key={plantname} />
       ) : (
-        <NotFound name={plantname} />
+        <NotFound kind="Plant" />
       )}
     </Loading>
   );
 };
-
-const NotFound: FC<{ name: string }> = ({ name }) => (
-  <div className="text-7xl text-center">User &apos;{name}&apos; not found</div>
-);
 
 export default Profile;

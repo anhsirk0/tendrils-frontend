@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { RoutesMap } from "@/AppRoutes";
 import { usePlant } from "@/hooks";
 import { useAuthStore } from "@/store";
+import { toAvatar } from "@/helpers";
 
 const UserDropdown = () => {
   const { signout } = useAuthStore();
@@ -19,13 +20,13 @@ const UserDropdown = () => {
         <div
           tabIndex={0}
           role="button"
-          className="btn btn-primary btn-circle btn-sm 2xl:btn-md avatar"
+          className="btn btn-primary btn-sm 2xl:btn-md"
         >
-          {p.name.charAt(0)}
+          {toAvatar(p.name)}
         </div>
         <ul
           tabIndex={0}
-          className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+          className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-primary-content rounded-box w-52"
         >
           <li>
             <Link to={RoutesMap.PROFILE.path.replace(/:.*/, p.plantname)}>
