@@ -14,7 +14,7 @@ const TendrilPage = () => {
   const token = usePlant().get("token").unwrapUndef();
 
   async function getTendril() {
-    const resp = await TendrilService.get({ uuid, token });
+    const resp = await TendrilService.getOne({ uuid, token });
     return toFeedTendril(resp?.data?.data);
   }
 

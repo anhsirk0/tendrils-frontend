@@ -10,7 +10,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 // local imports
 import { toAvatar, toProfileLink, toTendrilLink } from "@/helpers";
-import { useMediaQuery } from "@/hooks";
+import { useResponsive } from "@/hooks";
 import { FeedTendril } from "@/pages/Home/types";
 import HeartButton from "./HeartButton";
 
@@ -20,8 +20,7 @@ interface Props {
 }
 
 const FeedItem: FC<Props> = ({ tendril, compact }) => {
-  const isLg = useMediaQuery("lg");
-  const is2xl = useMediaQuery("2xl");
+  const R = useResponsive();
   const navigate = useNavigate();
 
   return (
@@ -43,15 +42,10 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
       </pre>
       <div className="grow" />
       <div className="flex gap-2 md:gap-4 mt-2 2xl:mt-4">
-        <HeartButton curls={tendril.curls} />
-        <div className="flex gap-1 md:gap-2 items-center">
-          <button className="active:scale-150 transition">
-            <IconMessage
-              className="text-base-content"
-              size={is2xl ? 32 : isLg ? 28 : 24}
-            />
-          </button>
-          <p className="text-sm md:text-md 2xl:text-lg text-base-content font-medium">
+        <HeartButton curls={tendril.curls} uuid={tendril.uuid} />
+        <div className="flex gap-1 md:gap-2 items-center [&>*]:text-base-content">
+          <IconMessage size={R({ base: 24, lg: 28, "2xl": 32 })} />
+          <p className="text-sm md:text-md 2xl:text-lg font-medium">
             {tendril.commentsCount}
           </p>
         </div>

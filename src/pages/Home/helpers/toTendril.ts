@@ -8,7 +8,7 @@ function toTendril(t: BackendData): Tendril {
     content: Some.String(t?.content),
     uuid: Some.String(t?.uuid),
     createdAt: Some.Number(t?.createdAt),
-    curls: Some.Array(t?.curls).map((c) => Some.String(c?.plantname)),
+    curls: Some.Array(t?.curls).map((c) => Some.String(c)),
     commentsCount: Some.Number(t?.commentsCount),
   };
 }

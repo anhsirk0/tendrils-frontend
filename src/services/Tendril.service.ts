@@ -14,7 +14,11 @@ export class TendrilService {
     return addToken(this.instance, param).get("all/" + param.plantname);
   }
 
-  static get(param: Dict) {
+  static getOne(param: Dict) {
     return addToken(this.instance, param).get(param.uuid);
+  }
+
+  static toggleCurl(param: Dict) {
+    return addToken(this.instance, param).post("toggle-curl/" + param.uuid);
   }
 }

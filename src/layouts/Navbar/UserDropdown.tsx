@@ -31,13 +31,13 @@ const UserDropdown = () => {
           <li>
             <Link to={RoutesMap.PROFILE.path.replace(/:.*/, p.plantname)}>
               <IconUserCircle />
-              Profile
+              <span className="font-semibold">Profile</span>
             </Link>
           </li>
           <li>
             <Link to="/" onClick={signout}>
               <IconLogout />
-              Logout
+              <span className="font-semibold">Logout</span>
             </Link>
           </li>
         </ul>
