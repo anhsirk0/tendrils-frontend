@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="navbar-start">
           <Link
             to={RoutesMap.HOME.path}
-            className="btn btn-sm 2xl:btn-md 2xl:text-xl bg-gradient-to-r from-primary/60 to-primary text-primary-content"
+            className="btn btn-sm 2xl:btn-md 2xl:text-xl bg-gradient-to-r from-primary to-primary/90 text-primary-content"
           >
             <Logo className="fill-primary-content" />
             Tendrils

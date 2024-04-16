@@ -19,7 +19,7 @@ const FollowersLabel: FC<Props> = ({ plantname, total }) => {
 
   return (
     <Dialog.Root>
-      <Dialog.Trigger className="link link-hover">
+      <Dialog.Trigger className="link link-hover text-left">
         <Label total={total} label="Followers" />
       </Dialog.Trigger>
       <Dialog.Portal>

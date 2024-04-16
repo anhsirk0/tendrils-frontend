@@ -28,18 +28,18 @@ const Feed: FC = () => {
   });
 
   return (
-    <div className="col-span-9 lg:col-span-7 h-full min-h-0 overflow-y-auto">
-      <p className="text-md mb-4">Feed</p>
+    <div className="col-span-9 lg:col-span-7 h-full min-h-0 overflow-y-auto flex flex-col">
+      <p className="text-md p-4">Feed</p>
       <Loading
         div
         on={isLoading}
-        className="flex flex-col gap-4 min-h-0 h-full md:pr-4"
+        className="flex flex-col gap-4 min-h-0 h-full md:pr-4 grow"
       >
         {tendrils.map((tendril) => (
           <FeedItem tendril={tendril} key={tendril.id} />
         ))}
         {tendrils.length === 0 && (
-          <div className="center h-1/2">
+          <div className="center">
             <p className="text-5xl text-40 text-center font-medium">
               Tendrils from people you follow will appear here
             </p>

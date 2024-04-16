@@ -8,7 +8,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ToastContainer pauseOnFocusLoss={false} />
+    <ToastContainer pauseOnFocusLoss={false} position="bottom-right" />
     <AppRoutes />
   </QueryClientProvider>
 );
