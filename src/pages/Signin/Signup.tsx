@@ -1,13 +1,15 @@
 import { FormEvent } from "react";
+
+// other imports
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // local imports
-import { AuthService } from "@/services";
-import { useRecord, useApi } from "@/hooks";
+import { RoutesMap } from "@/AppRoutes";
 import { Loading } from "@/components";
 import { toTitleCase } from "@/helpers";
-import { RoutesMap } from "@/AppRoutes";
+import { useApi, useRecord } from "@/hooks";
+import { AuthService } from "@/services";
 
 const SignUp = () => {
   const [info, updateInfo] = useRecord({

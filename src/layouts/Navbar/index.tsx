@@ -1,9 +1,14 @@
+// icons imports
 import { IconPlus } from "@tabler/icons-react";
+
+// other imports
 import { Link, useLocation } from "react-router-dom";
 
+// local imports
+import { RoutesMap } from "@/AppRoutes";
+import { Logo } from "@/components";
 import SelectTheme from "./SelectTheme";
 import UserDropdown from "./UserDropdown";
-import { RoutesMap } from "@/AppRoutes";
 
 const Navbar = () => {
   const location = useLocation();
@@ -14,8 +19,9 @@ const Navbar = () => {
         <div className="navbar-start">
           <Link
             to={RoutesMap.HOME.path}
-            className="btn btn-ghost btn-sm 2xl:btn-md 2xl:text-xl"
+            className="btn btn-sm 2xl:btn-md 2xl:text-xl bg-gradient-to-r from-primary/60 to-primary text-primary-content"
           >
+            <Logo className="fill-primary-content" />
             Tendrils
           </Link>
         </div>
