@@ -16,29 +16,35 @@
 *** subRoutes: {}
 *** kind: "private"
 *** Element: Home
+** CREATE
+*** title: "Create"
+*** path: "create"
+*** subRoutes: {}
+*** kind: "private"
+*** Element: Create
 * Public Routes
-** AUTH
+** SIGNIN
 *** title: "Signin"
 *** path: ""
 *** subRoutes
 *** kind: "public"
-*** Element: Auth
-**** Signin
-***** title: "Signin"
-***** path: ""
-***** Element: Signin
-***** kind: "public"
-***** subRoutes: {}
-**** Signup
-***** title: "Signup"
-***** path: "new"
-***** Element: Signup
-***** kind: "public"
-***** subRoutes: {}
-# * Independent Routes
-# ** CONTROL_TOWER_SIGNIN
-# *** title: "Control Tower Login"
-# *** path: "signin/:loginId"
-# *** subRoutes: [ ]
-# *** kind: "independent"
-# *** Element: ControlTowerSignin
+*** Element: Signin
+** SIGNUP
+*** title: "Signup"
+*** path: "new"
+*** Element: Signup
+*** kind: "public"
+*** subRoutes: {}
+* Independent Routes
+** PROFILE
+*** title: "Profile"
+*** path: "p/:plantname"
+*** subRoutes: {}
+*** kind: "independent"
+*** Element: Profile
+** TENDRIL
+*** title: "Tendril"
+*** path: "t/:uuid"
+*** subRoutes: {}
+*** kind: "independent"
+*** Element: Tendril

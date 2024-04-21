@@ -71,13 +71,6 @@ class RoutesMap {
     // Skeleton: DashboardSkeleton,
     kind: "independent",
   };
-  // static CONTROL_TOWER_SIGNIN: AppRoute = {
-  //   title: "Control Tower Login",
-  //   path: "signin/:loginId",
-  //   subRoutes: {},
-  //   Element: ControlTowerSignin,
-  //   kind: "independent",
-  // };
 }
 
 export default RoutesMap;
