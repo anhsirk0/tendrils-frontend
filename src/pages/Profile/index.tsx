@@ -6,7 +6,7 @@ import { Loading, NotFound } from "@/components";
 import { PlantService } from "@/services";
 import { RoutesMap } from "@/AppRoutes";
 import { Some } from "@/helpers";
-import { usePlant } from "@/hooks";
+import { usePlant, usePageTitle } from "@/hooks";
 import ProfileView from "./ProfileView";
 
 export interface PlantProfile extends Pick<Plant, "id" | "name" | "plantname"> {
@@ -35,6 +35,7 @@ function toPlantProfile(p: BackendData): PlantProfile {
 const Profile = () => {
   const { plantname } = useParams();
   const token = usePlant().get("token").unwrapUndef();
+  usePageTitle("@" + plantname);
 
   async function getProfile() {
     const resp = await PlantService.getProfile({ plantname, token });

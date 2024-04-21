@@ -6,31 +6,30 @@ import MDEditor from "@uiw/react-md-editor";
 
 // local imports
 /* import { TendrilService } from "@/services"; */
-/* import { usePlant } from "@/hooks"; */
+import { usePageTitle } from "@/hooks";
 import { toProfileLink, toAvatar } from "@/helpers";
 import { FeedTendril } from "@/pages/Home/types";
 import FloatingActions from "./FloatingActions";
 
-interface Props {
-  tendril: FeedTendril;
-}
-
-const TendrilView: FC<Props> = ({ tendril }) => (
-  <div className="flex flex-col h-full w-full max-w-7xl gap-4 2xl:gap-8">
-    <div className="flex w-full justify-between items-end border-b border-b-base-content/30 pb-1">
-      <div className="text-5xl pb-1 truncate">{tendril.title}</div>
-      <AuthorInfo {...tendril.author} />
+const TendrilView: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
+  usePageTitle(tendril.title + ` (by @${tendril.author.plantname})`);
+  return (
+    <div className="flex flex-col h-full w-full max-w-7xl gap-4 2xl:gap-8">
+      <div className="flex w-full justify-between items-end border-b border-b-base-content/30 pb-1">
+        <div className="text-5xl pb-1 truncate">{tendril.title}</div>
+        <AuthorInfo {...tendril.author} />
+      </div>
+      <MDEditor.Markdown source={tendril.content} />
+      <div
+        id="tendril-comments"
+        className="py-2 border-t border-t-base-content/30"
+      >
+        comments
+      </div>
+      <FloatingActions />
     </div>
-    <MDEditor.Markdown source={tendril.content} />
-    <div
-      id="tendril-comments"
-      className="py-2 border-t border-t-base-content/30"
-    >
-      comments
-    </div>
-    <FloatingActions />
-  </div>
-);
+  );
+};
 
 const AuthorInfo: FC<FeedTendril["author"]> = ({ plantname, name }) => (
   <Link

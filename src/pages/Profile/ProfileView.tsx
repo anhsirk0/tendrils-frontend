@@ -2,6 +2,7 @@ import { FC } from "react";
 
 // local imports
 import { toAvatar } from "@/helpers";
+import { usePageTitle } from "@/hooks";
 import type { PlantProfile } from "./index";
 import FollowButton from "./FollowButton";
 import TendrilsList from "./TendrilsList";
@@ -16,6 +17,7 @@ interface Props {
 const ProfileView: FC<Props> = ({ profile }) => {
   const { plantname, name, tendrilsCount, followersCount, followingCount } =
     profile;
+  usePageTitle(name);
 
   return (
     <div className="flex flex-col h-full max-w-6xl w-full">

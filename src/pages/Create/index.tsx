@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 // local imports
 import { Loading } from "@/components";
-import { useApi, usePlant, useRecord } from "@/hooks";
+import { useApi, usePlant, useRecord, usePageTitle } from "@/hooks";
 import { TendrilService } from "@/services";
+import { RoutesMap } from "@/AppRoutes";
 
 const Create = () => {
+  usePageTitle(RoutesMap.CREATE.title);
+
   const [tendril, updateTendril] = useRecord({ title: "", content: "" });
   const navigate = useNavigate();
   const plant = usePlant().unwrap();

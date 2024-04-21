@@ -1,8 +1,11 @@
-import { useMediaQuery } from "@/hooks";
+import { useMediaQuery, usePageTitle } from "@/hooks";
+import { RoutesMap } from "@/AppRoutes";
+
 import FollowingList from "./FollowingList";
 import Feed from "./Feed";
 
 const Home = () => {
+  usePageTitle(RoutesMap.HOME.title);
   const isLg = useMediaQuery("lg");
 
   return (
