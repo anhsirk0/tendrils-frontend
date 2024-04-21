@@ -12,16 +12,16 @@ import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
   const location = useLocation();
-
+  /* bg-gradient-to-r from-primary to-primary/90 */
   return (
     <div className="sticky top-0 z-10">
       <div className="navbar bg-base-100 border-b border-b-base-content/30 min-h-[2rem] 2xl:min-h-[4rem]">
         <div className="navbar-start">
           <Link
             to={RoutesMap.HOME.path}
-            className="btn btn-sm 2xl:btn-md 2xl:text-xl bg-gradient-to-r from-primary to-primary/90 text-primary-content"
+            className="btn btn-sm 2xl:btn-md btn-ghost 2xl:text-xl text-primary"
           >
-            <Logo className="fill-primary-content" />
+            <Logo className="fill-primary" />
             Tendrils
           </Link>
         </div>

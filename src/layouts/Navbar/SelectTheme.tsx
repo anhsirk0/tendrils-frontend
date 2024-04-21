@@ -30,13 +30,13 @@ const SelectTheme = () => {
         {themes.map((theme) => (
           <div
             key={theme}
-            className="btn h-10 justify-between rounded-xl w-full"
+            className="btn h-10 justify-between rounded-btn w-full"
             data-key="tendrils-theme"
             data-theme={theme}
             data-set-theme={theme}
           >
             {theme}
-            <div className="flex flex-row gap-1 [&>div]:h-6 [&>div]:w-2 [&>div]:rounded-xl">
+            <div className="flex flex-row gap-1 rounded-btn [&>div]:h-6 [&>div]:w-2 [&>div]:rounded-xl">
               <div className="bg-primary" />
               <div className="bg-accent" />
               <div className="bg-secondary" />
