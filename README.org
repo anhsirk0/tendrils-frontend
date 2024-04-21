@@ -1,0 +1,25 @@
+* Tendrils
+[[./public/logo.png]
+** About
+Very simple text only social media + blog WebApp
+** Installation
+*** Requirements
+|------------+---------|
+| Technology | Version |
+|------------+---------|
+| Node       | LTS     |
+| pnpm       | *       |
+|------------+---------|
+*** Setup
+#+BEGIN_SRC shell
+git clone https://github.com/anhsirk0/tendrils-frontend.git --depth=0
+cd tendrils-frontend
+pnpm install
+pnpm run dev
+#+END_SRC
+[[https://github.com/anhsirk0/tendrils-backend][tendrils-backend]] is also needed to be running on port 8000
+** Tech Stack
+ - [[https://react.dev][React]]
+ - [[https://daisyui.com][DaisyUI (Tailwind component library)]]
+ - [[https://zustand-demo.pmnd.rs][Zustand]]
+ - [[https://tanstack.com/query/v4/docs/react/adapters/react-query][React-query]]
