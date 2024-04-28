@@ -52,7 +52,7 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
         <div className="grow" />
         <div className="flex gap-1 md:gap-2 items-center">
           <p className="text-sm md:text-md 2xl:text-xl text-80">
-            {format(tendril.createdAt, "dd-MM-yyyy")}
+            {format(tendril.createdAt, "hh:mm aa, dd-MM-yyyy")}
             {!compact && <span className="text-60"> by</span>}
           </p>
           {!compact && <AuthorInfo {...tendril.author} />}

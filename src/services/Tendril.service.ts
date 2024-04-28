@@ -10,6 +10,7 @@ export class TendrilService {
   static getFeed(param: Dict) {
     return addToken(this.instance, param).get("feed/");
   }
+
   static getAll(param: Dict) {
     return addToken(this.instance, param).get("all/" + param.plantname);
   }

@@ -32,6 +32,7 @@ const ButtonForFollow: FC<Props> = ({ info }) => {
       );
       client.invalidateQueries({ queryKey: ["getProfile"] });
       client.invalidateQueries({ queryKey: ["getFollowing"] });
+      client.invalidateQueries({ queryKey: ["getFollowers"] });
     },
     onError: (resp) => toast.error(resp?.message || "Something went wrong"),
   });

@@ -14,36 +14,34 @@ const UserDropdown = () => {
   const { signout } = useAuthStore();
   const plant = usePlant();
 
-  return plant
-    .run((p) => (
-      <div className="dropdown dropdown-end ml-3">
-        <div
-          tabIndex={0}
-          role="button"
-          className="btn btn-primary btn-sm 2xl:btn-md"
-        >
-          {toAvatar(p.name)}
-        </div>
-        <ul
-          tabIndex={0}
-          className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-primary-content rounded-box w-52"
-        >
-          <li>
-            <Link to={RoutesMap.PROFILE.path.replace(/:.*/, p.plantname)}>
-              <IconUserCircle />
-              <span className="font-semibold">Profile</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/" onClick={signout}>
-              <IconLogout />
-              <span className="font-semibold">Logout</span>
-            </Link>
-          </li>
-        </ul>
+  return plant.Render((p) => (
+    <div className="dropdown dropdown-end ml-3">
+      <div
+        tabIndex={0}
+        role="button"
+        className="btn btn-primary btn-sm 2xl:btn-md"
+      >
+        {toAvatar(p.name)}
       </div>
-    ))
-    .unwrapNull();
+      <ul
+        tabIndex={0}
+        className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-primary-content rounded-box w-52"
+      >
+        <li>
+          <Link to={RoutesMap.PROFILE.path.replace(/:.*/, p.plantname)}>
+            <IconUserCircle />
+            <span className="font-semibold">Profile</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/" onClick={signout}>
+            <IconLogout />
+            <span className="font-semibold">Logout</span>
+          </Link>
+        </li>
+      </ul>
+    </div>
+  ));
 };
 
 export default UserDropdown;

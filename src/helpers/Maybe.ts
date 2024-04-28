@@ -1,3 +1,5 @@
+import { ReactElement, Fragment, createElement } from "react";
+
 export type Just<T> = { value: T; _type: "just" };
 export type Nothing = { _type: "nothing" };
 
@@ -8,7 +10,7 @@ function toJust<T>(value: T): Just<T> {
 const nothing: Nothing = { _type: "nothing" };
 
 type GetOnMaybe<T> = <U extends NonNullable<T[K]>, K extends keyof T>(
-  key: K,
+  key: K
 ) => Maybe<U>;
 
 type RunOnMaybe<T> = <U>(fn: (val: T) => U) => Maybe<NonNullable<U>>;
@@ -23,12 +25,12 @@ export type Maybe<T> = {
   unwrapNull: () => T | null;
   isJust: () => boolean;
   isNothing: () => boolean;
-  else: (fn: () => void) => void;
+  Render: (fn: (val: T) => ReactElement) => ReactElement;
 };
 
 function run<T, U>(
   value: Maybe<T>["value"],
-  fn: (val: T) => U,
+  fn: (val: T) => U
 ): Maybe<NonNullable<U>> {
   if (value._type === "nothing") return toMaybe<NonNullable<U>>(undefined);
   return toMaybe<NonNullable<U>>(fn(value.value) as NonNullable<U>);
@@ -53,6 +55,7 @@ export function toMaybe<T>(val?: T | undefined | null): Maybe<T> {
     unwrapNull: () => (isJust ? value.value : null),
     isJust: () => isJust,
     isNothing: () => !isJust,
-    else: (fn: () => void) => !isJust && fn(),
+    Render: (fn: (val: T) => ReactElement) =>
+      isJust ? fn(value.value) : createElement(Fragment),
   };
 }

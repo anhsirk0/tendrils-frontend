@@ -10,6 +10,7 @@ import { usePageTitle } from "@/hooks";
 import { toProfileLink, toAvatar } from "@/helpers";
 import { FeedTendril } from "@/pages/Home/types";
 import FloatingActions from "./FloatingActions";
+import CommentSection from "./CommentSection";
 
 const TendrilView: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
   usePageTitle(tendril.title + ` (by @${tendril.author.plantname})`);
@@ -20,12 +21,7 @@ const TendrilView: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
         <AuthorInfo {...tendril.author} />
       </div>
       <MDEditor.Markdown source={tendril.content} />
-      <div
-        id="tendril-comments"
-        className="py-2 border-t border-t-base-content/30"
-      >
-        comments
-      </div>
+      <CommentSection tendril={tendril} />
       <FloatingActions />
     </div>
   );

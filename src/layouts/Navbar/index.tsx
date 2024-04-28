@@ -12,7 +12,6 @@ import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
   const location = useLocation();
-  /* bg-gradient-to-r from-primary to-primary/90 */
   return (
     <div className="sticky top-0 z-10">
       <div className="navbar bg-base-100 border-b border-b-base-content/30 min-h-[2rem] 2xl:min-h-[4rem]">
