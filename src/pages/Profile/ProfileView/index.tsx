@@ -1,9 +1,10 @@
 import { FC } from "react";
+import { IconEdit } from "@tabler/icons-react";
 
 // local imports
 import { toAvatar } from "@/helpers";
 import { usePageTitle } from "@/hooks";
-import type { PlantProfile } from "./index";
+import type { PlantProfile } from "../types";
 import FollowButton from "./FollowButton";
 import TendrilsList from "./TendrilsList";
 import FollowingModal from "./FollowingModal";
@@ -12,9 +13,10 @@ import StatLabel from "./StatLabel";
 
 interface Props {
   profile: PlantProfile;
+  onEditClick: Fn0;
 }
 
-const ProfileView: FC<Props> = ({ profile }) => {
+const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
   const { plantname, name, tendrilsCount, followersCount, followingCount } =
     profile;
   usePageTitle(name);
@@ -50,6 +52,18 @@ const ProfileView: FC<Props> = ({ profile }) => {
         <div className="divider py-2 2xl:py-4" />
         <TendrilsList plant={{ plantname, name }} total={tendrilsCount} />
       </div>
+      {profile.isMe && (
+        <div className="fixed bottom-2 right-4 2xl:bottom-4 2xl:right-8">
+          <div className="tooltip tooltip-primary" data-tip="Edit Profile">
+            <button
+              className="btn btn-primary btn-sm 2xl:btn-md"
+              onClick={onEditClick}
+            >
+              <IconEdit />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

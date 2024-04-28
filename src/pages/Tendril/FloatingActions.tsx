@@ -16,7 +16,7 @@ const FloatingActions = () => {
   }
 
   return (
-    <div className="fixed bottom-2 right-2 2xl:bottom-4 2xl:right-4">
+    <div className="fixed bottom-2 right-4 2xl:bottom-6 2xl:right-8">
       <div className="flex gap-4 items-center">
         <div className="tooltip tooltip-primary" data-tip="Go to Comments">
           <button

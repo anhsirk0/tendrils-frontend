@@ -7,7 +7,7 @@ import { clsx } from "clsx";
 // local imports
 import { toAvatar, toProfileLink } from "@/helpers";
 import { Followee } from "@/pages/Home/types";
-import FollowButton from "@/pages/Profile/FollowButton";
+import FollowButton from "@/pages/Profile/ProfileView/FollowButton";
 
 interface Props {
   followee: Followee;

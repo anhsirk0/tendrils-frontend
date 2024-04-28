@@ -29,7 +29,7 @@ const Feed: FC = () => {
 
   return (
     <div className="col-span-9 lg:col-span-7 h-full min-h-0 overflow-y-auto flex flex-col">
-      <p className="text-md p-4">Feed</p>
+      <p className="text-md pb-4">Feed</p>
       <Loading
         div
         on={isLoading}

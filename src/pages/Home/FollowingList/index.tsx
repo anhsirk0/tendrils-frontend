@@ -11,7 +11,7 @@ const FollowingList: FC = () => {
 
   return (
     <Fragment>
-      <p className="text-md">Following ({following.length})</p>
+      <p className="text-md pb-4">Following ({following.length})</p>
       <Loading
         div
         on={isLoading}

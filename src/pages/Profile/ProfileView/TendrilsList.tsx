@@ -9,7 +9,7 @@ import { Some } from "@/helpers";
 import { usePlant } from "@/hooks";
 import { toTendril } from "@/pages/Home/helpers";
 import { TendrilService } from "@/services";
-import FeedItem from "../Home/Feed/FeedItem";
+import FeedItem from "@/pages/Home/Feed/FeedItem";
 
 interface Props {
   plant: Pick<Plant, "plantname" | "name">;
