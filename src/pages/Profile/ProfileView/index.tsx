@@ -17,8 +17,14 @@ interface Props {
 }
 
 const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
-  const { plantname, name, tendrilsCount, followersCount, followingCount } =
-    profile;
+  const {
+    avatarUrl,
+    plantname,
+    name,
+    tendrilsCount,
+    followersCount,
+    followingCount,
+  } = profile;
   usePageTitle(name);
 
   return (
@@ -26,7 +32,7 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
       <div className="flex items-center gap-4 md:gap-8 2xl:gap-16 md:mt-2 2xl:mt-8 w-full">
         <div className="avatar placeholder">
           <div className="bg-neutral text-2xl md:text-4xl 2xl:text-6xl text-neutral-content rounded-btn w-40 2xl:w-52">
-            {toAvatar(name)}
+            {avatarUrl ? <img alt="avatar" src={avatarUrl} /> : toAvatar(name)}
           </div>
         </div>
         <div className="flex flex-col gap-2 2xl:gap-4">

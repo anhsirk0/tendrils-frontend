@@ -1,4 +1,5 @@
-export interface PlantProfile extends Pick<Plant, "id" | "name" | "plantname"> {
+export interface PlantProfile
+  extends Pick<Plant, "id" | "name" | "plantname" | "avatarUrl"> {
   followersCount: number;
   followingCount: number;
   tendrilsCount: number;
@@ -6,4 +7,3 @@ export interface PlantProfile extends Pick<Plant, "id" | "name" | "plantname"> {
   createdAt: number;
   isMe: boolean;
 }
-

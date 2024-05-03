@@ -5,6 +5,7 @@ function toPlantProfile(p: BackendData): PlantProfile {
   return {
     id: Some.Number(p?.id),
     name: Some.String(p?.name),
+    avatarUrl: Some.String(p?.avatarUrl),
     plantname: Some.String(p?.plantname),
     followersCount: Some.Number(p?.followersCount),
     followingCount: Some.Number(p?.followingCount),

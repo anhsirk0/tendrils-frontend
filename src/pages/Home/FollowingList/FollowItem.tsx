@@ -30,7 +30,11 @@ const FollowItem: FC<Props> = ({ followee, compact }) => {
             compact ? "w-8 2xl:w-12" : "w-12 2xl:w-16"
           )}
         >
-          {toAvatar(followee.name)}
+          {followee.avatarUrl ? (
+            <img alt="avatar" src={followee.avatarUrl} />
+          ) : (
+            toAvatar(followee.name)
+          )}
         </div>
       </div>
       <div className="flex flex-col grow">

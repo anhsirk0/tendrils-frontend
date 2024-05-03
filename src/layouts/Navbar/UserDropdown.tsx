@@ -16,13 +16,21 @@ const UserDropdown = () => {
 
   return plant.Render((p) => (
     <div className="dropdown dropdown-end ml-3">
-      <div
-        tabIndex={0}
-        role="button"
-        className="btn btn-primary btn-sm 2xl:btn-md"
-      >
-        {toAvatar(p.name)}
-      </div>
+      {p.avatarUrl ? (
+        <div className="avatar placeholder" tabIndex={0} role="button">
+          <div className="rounded-btn w-8 2xl:w-10 h-8 2xl:h-10">
+            <img alt="avatar" src={p.avatarUrl} />
+          </div>
+        </div>
+      ) : (
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-primary btn-sm 2xl:btn-md"
+        >
+          {toAvatar(p.name)}
+        </div>
+      )}
       <ul
         tabIndex={0}
         className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-primary-content rounded-box w-52"

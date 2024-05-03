@@ -7,10 +7,15 @@ export type Tendril = {
   curls: Array<string>;
   commentsCount: number;
 };
+
 export type FeedTendril = Tendril & {
-  author: Pick<Plant, "name" | "plantname">;
+  author: Pick<Plant, "name" | "plantname" | "avatarUrl">;
 };
-export type Followee = Pick<Plant, "id" | "name" | "plantname"> & {
+
+export type Followee = Pick<
+  Plant,
+  "id" | "name" | "plantname" | "avatarUrl"
+> & {
   isMe: boolean;
   isFollowed: boolean;
 };

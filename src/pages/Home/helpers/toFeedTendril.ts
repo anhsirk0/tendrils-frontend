@@ -8,6 +8,7 @@ function toFeedTendril(t: BackendData): FeedTendril {
     author: {
       name: Some.String(t?.author?.name),
       plantname: Some.String(t?.author?.plantname),
+      avatarUrl: Some.String(t?.author?.avatarUrl),
     },
   };
 }

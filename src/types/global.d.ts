@@ -12,4 +12,5 @@ declare type Plant = {
   name: string;
   plantname: string;
   token: string;
+  avatarUrl: string;
 };

@@ -22,6 +22,7 @@ const Signin = () => {
         name: Some.String(resp?.data?.name),
         token: Some.String(resp?.data?.token),
         plantname: Some.String(resp?.data?.plantname),
+        avatarUrl: Some.String(resp?.data?.avatarUrl),
       });
     },
     onError: (r) =>
