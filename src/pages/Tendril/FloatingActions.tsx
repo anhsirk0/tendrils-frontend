@@ -1,8 +1,12 @@
+import { FC, ReactNode } from "react";
 // icons imports
 import { IconMessage, IconArrowUp } from "@tabler/icons-react";
 import { toMaybe } from "@/helpers";
+import { useResponsive } from "@/hooks";
 
-const FloatingActions = () => {
+const FloatingActions: FC<{ children?: ReactNode }> = ({ children }) => {
+  const R = useResponsive();
+
   function scrollTop() {
     toMaybe(document.getElementById("tendril-container")).run((el) =>
       el.scrollTo({ top: 0, behavior: "smooth" })
@@ -18,12 +22,13 @@ const FloatingActions = () => {
   return (
     <div className="fixed bottom-2 right-4 2xl:bottom-6 2xl:right-8">
       <div className="flex gap-4 items-center">
+        {children}
         <div className="tooltip tooltip-primary" data-tip="Go to Comments">
           <button
             className="btn btn-primary btn-sm 2xl:btn-md"
             onClick={scrollToComments}
           >
-            <IconMessage />
+            <IconMessage size={R({ base: 20, lg: 24, "2xl": 28 })} />
           </button>
         </div>
         <div className="tooltip tooltip-primary" data-tip="Go to Top">
@@ -31,7 +36,7 @@ const FloatingActions = () => {
             className="btn btn-primary btn-sm 2xl:btn-md"
             onClick={scrollTop}
           >
-            <IconArrowUp />
+            <IconArrowUp size={R({ base: 20, lg: 24, "2xl": 28 })} />
           </button>
         </div>
       </div>

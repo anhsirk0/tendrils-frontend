@@ -1,19 +1,31 @@
 import { FC } from "react";
 
+// icons imports
+import { IconEdit } from "@tabler/icons-react";
+
 // other imports
-import { Link } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
+import { Link } from "react-router-dom";
 
 // local imports
-/* import { TendrilService } from "@/services"; */
-import { usePageTitle } from "@/hooks";
-import { toProfileLink, toAvatar } from "@/helpers";
+import { toAvatar, toProfileLink } from "@/helpers";
+import { usePageTitle, usePlant, useResponsive } from "@/hooks";
 import { FeedTendril } from "@/pages/Home/types";
 import FloatingActions from "./FloatingActions";
 import CommentSection from "./CommentSection";
 
-const TendrilView: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
+interface Props {
+  tendril: FeedTendril;
+  onEditClick: Fn0;
+}
+
+const TendrilView: FC<Props> = ({ tendril, onEditClick }) => {
   usePageTitle(tendril.title + ` (by @${tendril.author.plantname})`);
+  const R = useResponsive();
+  const isMe = usePlant()
+    .run((p) => p.plantname === tendril.author.plantname)
+    .unwrapOr(false);
+
   return (
     <div className="flex flex-col h-full w-full max-w-7xl gap-4 2xl:gap-8">
       <div className="flex w-full justify-between items-end border-b border-b-base-content/30 pb-1">
@@ -22,7 +34,18 @@ const TendrilView: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
       </div>
       <MDEditor.Markdown source={tendril.content} />
       <CommentSection tendril={tendril} />
-      <FloatingActions />
+      <FloatingActions>
+        {isMe && (
+          <div className="tooltip tooltip-primary" data-tip="Edit Tendril">
+            <button
+              className="btn btn-primary btn-sm 2xl:btn-md"
+              onClick={onEditClick}
+            >
+              <IconEdit size={R({ base: 20, lg: 24, "2xl": 28 })} />
+            </button>
+          </div>
+        )}
+      </FloatingActions>
     </div>
   );
 };

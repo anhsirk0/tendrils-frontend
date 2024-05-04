@@ -7,6 +7,13 @@ export class TendrilService {
     return addToken(this.instance, param).post("create", param.data);
   }
 
+  static update(param: Dict) {
+    return addToken(this.instance, param).post(
+      "update/" + param.uuid,
+      param.data
+    );
+  }
+
   static getFeed(param: Dict) {
     return addToken(this.instance, param).get("feed/");
   }

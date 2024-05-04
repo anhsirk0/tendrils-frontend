@@ -1,9 +1,11 @@
 import { FC } from "react";
+
+// icons imports
 import { IconEdit } from "@tabler/icons-react";
 
 // local imports
 import { toAvatar } from "@/helpers";
-import { usePageTitle } from "@/hooks";
+import { usePageTitle, useResponsive } from "@/hooks";
 import type { PlantProfile } from "../types";
 import FollowButton from "./FollowButton";
 import TendrilsList from "./TendrilsList";
@@ -26,6 +28,7 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
     followingCount,
   } = profile;
   usePageTitle(name);
+  const R = useResponsive();
 
   return (
     <div className="flex flex-col h-full max-w-6xl w-full">
@@ -65,7 +68,7 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
               className="btn btn-primary btn-sm 2xl:btn-md"
               onClick={onEditClick}
             >
-              <IconEdit />
+              <IconEdit size={R({ base: 20, lg: 24, "2xl": 28 })} />
             </button>
           </div>
         </div>
