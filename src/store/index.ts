@@ -15,7 +15,7 @@ const useAuthStore = create<StoreState, [["zustand/persist", StoreState]]>(
       plant: null,
       signin: (plant: Plant) => set(() => ({ plant })),
       update: (info: UpdatePlantInfo) =>
-        set((plant) => ({ ...plant, ...info })),
+        set(({ plant }) => ({ plant: plant ? { ...plant, ...info } : null })),
       signout: () => set(() => ({ plant: null })),
     }),
     { name: "tendrils-user-info" }

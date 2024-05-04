@@ -23,7 +23,11 @@ const CommentItem: FC<Props> = ({ comment }) => {
       >
         <div className="avatar placeholder">
           <div className="bg-neutral text-neutral-content md:text-lg 2xl:text-xl rounded-btn w-10 2xl:w-12">
-            {toAvatar(plant.name)}
+            {plant.avatarUrl ? (
+              <img alt="avatar" src={plant.avatarUrl} />
+            ) : (
+              toAvatar(plant.name)
+            )}
           </div>
         </div>
         <div className="flex flex-col">

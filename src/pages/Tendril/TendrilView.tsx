@@ -27,16 +27,20 @@ const TendrilView: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
   );
 };
 
-const AuthorInfo: FC<FeedTendril["author"]> = ({ plantname, name }) => (
+const AuthorInfo: FC<FeedTendril["author"]> = (author) => (
   <Link
-    to={toProfileLink(plantname)}
+    to={toProfileLink(author.plantname)}
     onClick={(e) => e.stopPropagation()}
     className="flex items-center btn-ghost rounded-btn p-1 2xl:p-2"
   >
-    <p className="truncate md:text-lg 2xl:text-2xl px-2">{name}</p>
+    <p className="truncate md:text-lg 2xl:text-2xl px-2">{author.name}</p>
     <div className="avatar placeholder">
       <div className="bg-neutral text-neutral-content md:text-lg 2xl:text-xl rounded-btn w-8 2xl:w-10">
-        {toAvatar(name)}
+        {author.avatarUrl ? (
+          <img alt="avatar" src={author.avatarUrl} />
+        ) : (
+          toAvatar(author.name)
+        )}
       </div>
     </div>
   </Link>

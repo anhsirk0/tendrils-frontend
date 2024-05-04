@@ -9,6 +9,7 @@ function toComment(c: BackendData): Comment {
     plant: {
       name: Some.String(c?.plant?.name),
       plantname: Some.String(c?.plant?.plantname),
+      avatarUrl: Some.String(c?.plant?.avatarUrl),
     },
   };
 }

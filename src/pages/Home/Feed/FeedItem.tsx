@@ -62,18 +62,22 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
   );
 };
 
-const AuthorInfo: FC<FeedTendril["author"]> = ({ plantname, name }) => (
+const AuthorInfo: FC<FeedTendril["author"]> = (author) => (
   <Link
-    to={toProfileLink(plantname)}
+    to={toProfileLink(author.plantname)}
     onClick={(e) => e.stopPropagation()}
     className="flex items-center max-w-[3rem] 2xl:max-w-[3.5rem] hover:max-w-[12rem] transition-all duration-100 group"
   >
     <p className="truncate text-sm md:text-md 2xl:text-xl w-0 group-hover:w-auto">
-      {name}
+      {author.name}
     </p>
     <div className="avatar placeholder pl-2">
       <div className="bg-neutral text-neutral-content text-xs md:text-sm 2xl:text-md rounded-btn w-6 2xl:w-8">
-        {toAvatar(name)}
+        {author.avatarUrl ? (
+          <img alt="avatar" src={author.avatarUrl} />
+        ) : (
+          toAvatar(author.name)
+        )}
       </div>
     </div>
   </Link>
