@@ -5,7 +5,7 @@ import { IconEdit } from "@tabler/icons-react";
 
 // local imports
 import { toAvatar } from "@/helpers";
-import { usePageTitle, useResponsive } from "@/hooks";
+import { usePageTitle, useResponsive, usePlant } from "@/hooks";
 import type { PlantProfile } from "../types";
 import FollowButton from "./FollowButton";
 import TendrilsList from "./TendrilsList";
@@ -28,6 +28,7 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
     followingCount,
   } = profile;
   usePageTitle(name);
+  const plant = usePlant();
   const R = useResponsive();
 
   return (
@@ -46,7 +47,9 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
             <p className="text-lg md:text-xl 2xl:text-3xl text-60">
               @{plantname}
             </p>
-            <FollowButton info={profile} />
+            {plant.Render(() => (
+              <FollowButton info={profile} />
+            ))}
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 2xl:gap-12 text-lg md:text-xl 2xl:text-3xl text-80">
             <a href={"#tendrils"} className="link link-hover">

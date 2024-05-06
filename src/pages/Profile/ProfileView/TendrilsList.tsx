@@ -12,7 +12,7 @@ import { TendrilService } from "@/services";
 import FeedItem from "@/pages/Home/Feed/FeedItem";
 
 interface Props {
-  plant: Pick<Plant, "plantname" | "name">;
+  plant: Pick<Plant, "plantname" | "name" | "avatarUrl">;
   total: number;
 }
 
@@ -30,7 +30,6 @@ const TendrilsList: FC<Props> = ({ plant, total }) => {
     queryKey: ["getTendrils", token],
     queryFn: getTendrils,
     refetchOnWindowFocus: false,
-    enabled: !!token,
     initialData: [],
   });
 
