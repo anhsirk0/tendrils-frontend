@@ -52,7 +52,7 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
             ))}
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 2xl:gap-12 text-lg md:text-xl 2xl:text-3xl text-80">
-            <a href={"#tendrils"} className="link link-hover">
+            <a href="#tendrils" className="link link-hover">
               <StatLabel total={tendrilsCount} label="Tendrils" />
             </a>
             <FollowingModal plantname={plantname} total={followingCount} />
@@ -60,9 +60,12 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
           </div>
         </div>
       </div>
-      <div className="grow w-full">
-        <div className="divider py-2 2xl:py-4" />
-        <TendrilsList plant={{ plantname, name }} total={tendrilsCount} />
+      <div className="grow w-full" id="tendrils">
+        <div className="divider py-3 2xl:py-6" />
+        <TendrilsList
+          plant={{ plantname, name, avatarUrl }}
+          total={tendrilsCount}
+        />
       </div>
       {profile.isMe && (
         <div className="fixed bottom-2 right-4 2xl:bottom-4 2xl:right-8">

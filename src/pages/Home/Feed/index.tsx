@@ -60,7 +60,7 @@ const Feed: FC = () => {
             </p>
           </div>
         )}
-        <Loading on={isFetchingNextPage} div className="center text-60">
+        <Loading div on={isFetchingNextPage} className="center text-60">
           {!hasNextPage && "You've reached the end"}
         </Loading>
       </Loading>

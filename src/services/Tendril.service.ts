@@ -22,7 +22,9 @@ export class TendrilService {
   }
 
   static getAll(param: Dict) {
-    return addToken(this.instance, param).get("all/" + param.plantname);
+    return addToken(this.instance, param).get("all/" + param.plantname, {
+      params: { take: this.TAKE, skip: param.page * this.TAKE },
+    });
   }
 
   static getOne(param: Dict) {
