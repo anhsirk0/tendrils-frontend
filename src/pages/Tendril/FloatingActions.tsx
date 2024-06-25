@@ -1,20 +1,20 @@
 import { FC, ReactNode } from "react";
 // icons imports
 import { IconMessage, IconArrowUp } from "@tabler/icons-react";
-import { Maybe } from "@/helpers";
+import { getElementMaybe } from "@/helpers";
 import { useResponsive } from "@/hooks";
 
 const FloatingActions: FC<{ children?: ReactNode }> = ({ children }) => {
   const R = useResponsive();
 
   function scrollTop() {
-    new Maybe(document.getElementById("tendril-container")).run((el) =>
+    getElementMaybe("tendril-container").run((el) =>
       el.scrollTo({ top: 0, behavior: "smooth" })
     );
   }
 
   function scrollToComments() {
-    new Maybe(document.getElementById("tendril-comments")).run((el) =>
+    getElementMaybe("tendril-comments").run((el) =>
       el.scrollIntoView({ behavior: "smooth" })
     );
   }

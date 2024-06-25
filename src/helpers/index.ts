@@ -5,5 +5,6 @@ export { Some } from "./Some";
 export { default as toTitleCase } from "./toTitleCase";
 export { default as toProfileLink } from "./toProfileLink";
 export { default as toTendrilLink } from "./toTendrilLink";
+export { default as getElementMaybe } from "./getElementMaybe";
 
 export { Maybe } from "./Maybe";
