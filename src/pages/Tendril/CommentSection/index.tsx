@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 
 // local imports
 import { Loading } from "@/components";
-import { Some, toMaybe } from "@/helpers";
+import { Some, Maybe } from "@/helpers";
 import { usePlant, useResponsive } from "@/hooks";
 import HeartButton from "@/pages/Home/Feed/HeartButton";
 import { FeedTendril } from "@/pages/Home/types";
@@ -39,7 +39,7 @@ const CommentSection: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
   function onClick() {
     setIsCommenting(true);
     setTimeout(() => {
-      toMaybe(document.getElementById("comment-box")).run((el) =>
+      new Maybe(document.getElementById("comment-box")).run((el) =>
         el.scrollIntoView({ behavior: "smooth" })
       );
     }, 100);
