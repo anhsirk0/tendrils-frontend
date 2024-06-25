@@ -1,4 +1,4 @@
-import { FC, UIEvent } from "react";
+import { FC, UIEvent, useMemo } from "react";
 
 // other imports
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -36,6 +36,11 @@ const Feed: FC = () => {
       getNextPageParam: (lastPage) => lastPage.nextCursor,
     });
 
+  const tendrils = useMemo(
+    () => (data ? data.pages.flatMap((page) => page.data) : []),
+    [data]
+  );
+
   function onScroll(event: UIEvent<HTMLDivElement>) {
     const { clientHeight, scrollHeight, scrollTop } = event.currentTarget;
     if (scrollHeight - scrollTop - clientHeight < 0.8) fetchNextPage();
@@ -50,12 +55,12 @@ const Feed: FC = () => {
         className="flex flex-col gap-4 min-h-0 h-full md:pr-4 grow overflow-y-auto"
         {...(hasNextPage && { onScroll })}
       >
-        {data?.pages
-          .flatMap((page) => page.data)
-          .map((tendril) => <FeedItem tendril={tendril} key={tendril.id} />)}
-        {data?.pages.length === 0 && (
-          <div className="center">
-            <p className="text-5xl text-40 text-center font-medium">
+        {tendrils.map((tendril) => (
+          <FeedItem tendril={tendril} key={tendril.id} />
+        ))}
+        {tendrils.length === 0 && (
+          <div className="center h-1/2">
+            <p className="text-lg md:text-xl 2xl:text-2xl text-40 text-center font-medium">
               Tendrils from people you follow will appear here
             </p>
           </div>

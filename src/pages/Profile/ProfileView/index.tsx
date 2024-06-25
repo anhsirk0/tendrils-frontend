@@ -9,8 +9,8 @@ import { usePageTitle, useResponsive, usePlant } from "@/hooks";
 import type { PlantProfile } from "../types";
 import FollowButton from "./FollowButton";
 import TendrilsList from "./TendrilsList";
-import FollowingModal from "./FollowingModal";
-import FollowersModal from "./FollowersModal";
+import FollowingModal from "./Modals/FollowingModal";
+import FollowersModal from "./Modals/FollowersModal";
 import StatLabel from "./StatLabel";
 
 interface Props {
