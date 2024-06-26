@@ -2,7 +2,6 @@ import { ReactElement, Fragment, createElement } from "react";
 
 export type Just<T> = { value: T; _tag: "just" };
 export type Nothing = { _tag: "nothing" };
-
 const nothing: Nothing = { _tag: "nothing" };
 
 type MaybeData<T> = Just<T> | Nothing;
