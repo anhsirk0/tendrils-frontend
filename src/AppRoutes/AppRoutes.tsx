@@ -8,11 +8,12 @@ const allRoutes = groupBy(appRoutes, "kind");
 
 const AppRoutes = () => {
   const plant = usePlant();
+  console.log(plant.isJust);
 
   return (
     <BrowserRouter>
       <Routes>
-        {plant.isJust() ? (
+        {plant.isJust ? (
           <Route path="/" element={<Layout />}>
             {allRoutes["private"].map(GetRoute)}
           </Route>

@@ -3,7 +3,7 @@ import { Maybe } from "@/helpers";
 
 function usePlant(): Maybe<Plant> {
   const { plant } = useAuthStore();
-  return new Maybe(plant && plant.token.length < 34 ? plant : null);
+  return new Maybe(plant && plant.token.length > 34 ? plant : null);
 }
 
 export default usePlant;

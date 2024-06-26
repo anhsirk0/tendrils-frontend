@@ -4,9 +4,6 @@ export type Just<T> = { value: T; _tag: "just" };
 export type Nothing = { _tag: "nothing" };
 
 const nothing: Nothing = { _tag: "nothing" };
-function toJust<T>(value: T): Just<T> {
-  return { value: value, _tag: "just" };
-}
 
 type MaybeData<T> = Just<T> | Nothing;
 function isJust(m: MaybeData<any>): m is Just<any> {
@@ -16,8 +13,9 @@ function isJust(m: MaybeData<any>): m is Just<any> {
 export class Maybe<T> {
   private data: MaybeData<T>;
 
-  constructor(val?: T | undefined | null) {
-    this.data = val === undefined || val === null ? nothing : toJust(val);
+  constructor(value?: T | undefined | null) {
+    this.data =
+      value === undefined || value === null ? nothing : { value, _tag: "just" };
   }
 
   get isJust() {

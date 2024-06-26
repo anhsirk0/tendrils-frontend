@@ -27,7 +27,7 @@ const FollowItem: FC<Props> = ({ followee, compact }) => {
         <div
           className={clsx(
             "bg-neutral text-neutral-content text-sm md:text-md 2xl:text-xl rounded-btn",
-            compact ? "w-8 2xl:w-12" : "w-12 2xl:w-16"
+            compact ? "w-6 2xl:w-10" : "w-10 2xl:w-14"
           )}
         >
           {followee.avatarUrl ? (
@@ -42,8 +42,8 @@ const FollowItem: FC<Props> = ({ followee, compact }) => {
           className={clsx(
             "truncate",
             compact
-              ? "text-sm md:text-md 2xl:text-xl"
-              : "md:text-xl 2xl:text-2xl"
+              ? "text-xs md:text-sm 2xl:text-lg"
+              : "md:text-lg 2xl:text-xl"
           )}
         >
           {followee.name}
