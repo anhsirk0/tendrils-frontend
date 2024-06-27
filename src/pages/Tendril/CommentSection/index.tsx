@@ -48,7 +48,7 @@ const CommentSection: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
   return (
     <div
       id="tendril-comments"
-      className="py-8 border-t border-t-base-content/30 flex flex-col gap-4 2xl:gap-8"
+      className="py-8 border-t border-t-base-content/30 flex flex-col"
     >
       <div className="flex gap-2 md:gap-4 mt-2 2xl:mt-4">
         <HeartButton curls={tendril.curls} uuid={tendril.uuid} />
@@ -65,17 +65,16 @@ const CommentSection: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
           </button>
         ))}
       </div>
-      {isCommenting && (
-        <CommentForm
-          uuid={tendril.uuid}
-          onCancel={() => setIsCommenting(false)}
-          afterSuccess={() => setIsCommenting(false)}
-        />
-      )}
+      <CommentForm
+        show={isCommenting}
+        uuid={tendril.uuid}
+        onCancel={() => setIsCommenting(false)}
+        afterSuccess={() => setIsCommenting(false)}
+      />
       <Loading
         div
         on={isLoading}
-        className="flex flex-col gap-2 md:gap-4 mt-2 2xl:mt-4"
+        className="flex flex-col gap-2 md:gap-4 mt-4 2xl:mt-8"
       >
         <p className="text-md 2xl:text-lg text-80">Comments</p>
         {comments.map((comment) => (
