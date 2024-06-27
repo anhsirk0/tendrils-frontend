@@ -59,7 +59,7 @@ const Signin = () => {
           />
           <Loading
             on={isPending}
-            component="button"
+            as="button"
             type="submit"
             className="btn btn-block btn-primary shadow"
             disabled={isPending}

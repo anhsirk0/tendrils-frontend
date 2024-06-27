@@ -47,7 +47,7 @@ const CommentForm: FC<Props> = ({ uuid, onCancel, afterSuccess }) => {
         </button>
         <Loading
           on={isPending}
-          component="button"
+          as="button"
           className="btn btn-primary"
           onClick={(e) => (e.stopPropagation(), mutate())}
           disabled={isPending}

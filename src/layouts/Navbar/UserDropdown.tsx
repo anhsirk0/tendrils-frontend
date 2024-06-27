@@ -3,6 +3,7 @@ import { IconLogout, IconUserCircle } from "@tabler/icons-react";
 
 // other imports
 import { Link } from "react-router-dom";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 // local imports
 import { RoutesMap } from "@/AppRoutes";
@@ -16,40 +17,39 @@ const UserDropdown = () => {
 
   return plant
     .run((p) => (
-      <div className="dropdown dropdown-end ml-3">
-        {p.avatarUrl ? (
-          <div className="avatar placeholder" tabIndex={0} role="button">
-            <div className="rounded-btn w-8 2xl:w-10 h-8 2xl:h-10">
-              <img alt="avatar" src={p.avatarUrl} />
-            </div>
-          </div>
-        ) : (
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-primary btn-sm 2xl:btn-md"
+      <Menu>
+        <div className="dropdown dropdown-end ml-3">
+          <MenuButton
+            className={
+              p.avatarUrl
+                ? "avatar placeholder"
+                : "btn btn-primary btn-sm 2xl:btn-md"
+            }
           >
-            {toAvatar(p.name)}
-          </div>
-        )}
-        <ul
-          tabIndex={0}
-          className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-primary-content rounded-box w-52"
-        >
-          <li>
-            <Link to={RoutesMap.PROFILE.path.replace(/:.*/, p.plantname)}>
-              <IconUserCircle />
-              <span className="font-semibold">Profile</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/" onClick={signout}>
-              <IconLogout />
-              <span className="font-semibold">Logout</span>
-            </Link>
-          </li>
-        </ul>
-      </div>
+            {p.avatarUrl ? (
+              <div className="rounded-btn w-8 2xl:w-10 h-8 2xl:h-10">
+                <img alt="avatar" src={p.avatarUrl} />
+              </div>
+            ) : (
+              toAvatar(p.name)
+            )}
+          </MenuButton>
+          <MenuItems className="menu menu-sm md:menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-primary-content rounded-box w-52">
+            <MenuItem as="li">
+              <Link to={RoutesMap.PROFILE.path.replace(/:.*/, p.plantname)}>
+                <IconUserCircle />
+                <span className="font-semibold">Profile</span>
+              </Link>
+            </MenuItem>
+            <MenuItem as="li">
+              <Link to="/" onClick={signout}>
+                <IconLogout />
+                <span className="font-semibold">Logout</span>
+              </Link>
+            </MenuItem>
+          </MenuItems>
+        </div>
+      </Menu>
     ))
     .unwrapOr(
       <Link to="/" className="btn btn-primary btn-sm 2xl:btn-md ml-3">

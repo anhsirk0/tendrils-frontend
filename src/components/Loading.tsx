@@ -11,14 +11,14 @@ import { Color } from "@/types";
 interface LoadingProps<C> {
   on: boolean;
   color?: Color;
-  component?: C;
+  as?: C;
   Loader?: ReactNode;
   div?: boolean;
 }
 
 function Loading<C extends ElementType>({
   on,
-  component,
+  as: component,
   children,
   color,
   Loader,

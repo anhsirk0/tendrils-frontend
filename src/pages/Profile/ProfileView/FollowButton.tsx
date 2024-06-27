@@ -40,7 +40,7 @@ const ButtonForFollow: FC<Props> = ({ info }) => {
   return (
     <Loading
       on={isPending}
-      component="button"
+      as="button"
       className={clsx(
         "btn btn-sm 2xl:btn-md btn-primary capitalize",
         info.isFollowed && "btn-outline"

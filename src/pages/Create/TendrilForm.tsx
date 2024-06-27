@@ -80,7 +80,7 @@ const TendrilForm: FC<Props> = ({ uuid, data, onCancel, afterSuccess }) => {
         )}
         <Loading
           on={isPending}
-          component="button"
+          as="button"
           type="submit"
           className="btn btn-primary shadow"
           disabled={isPending}

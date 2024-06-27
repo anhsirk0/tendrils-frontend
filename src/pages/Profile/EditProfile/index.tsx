@@ -74,7 +74,7 @@ const EditProfile: FC<Props> = ({ profile, onCancel }) => {
         </button>
         <Loading
           on={isPending}
-          component="button"
+          as="button"
           className="btn btn-primary"
           disabled={isPending}
           type="submit"
