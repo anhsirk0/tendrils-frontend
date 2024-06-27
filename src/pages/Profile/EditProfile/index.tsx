@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 
 // local imports
-import { Loading } from "@/components";
+import { Button } from "@/components";
 import { toTitleCase } from "@/helpers";
 import { useApi, usePlant, useRecord } from "@/hooks";
 import { PlantService } from "@/services";
@@ -72,15 +72,9 @@ const EditProfile: FC<Props> = ({ profile, onCancel }) => {
         <button type="button" onClick={onCancel} className="btn">
           Cancel
         </button>
-        <Loading
-          on={isPending}
-          as="button"
-          className="btn btn-primary"
-          disabled={isPending}
-          type="submit"
-        >
+        <Button loading={isPending} className="btn btn-primary" type="submit">
           Save
-        </Loading>
+        </Button>
       </div>
     </form>
   );

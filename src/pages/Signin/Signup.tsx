@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 // local imports
 import { RoutesMap } from "@/AppRoutes";
-import { Loading } from "@/components";
+import { Button } from "@/components";
 import { toTitleCase } from "@/helpers";
 import { useApi, useRecord } from "@/hooks";
 import { AuthService } from "@/services";
@@ -65,15 +65,13 @@ const SignUp = () => {
               />
             );
           })}
-          <Loading
-            on={isPending}
-            as="button"
+          <Button
+            loading={isPending}
             type="submit"
             className="btn btn-block btn-primary shadow"
-            disabled={isPending}
           >
             Create Account
-          </Loading>
+          </Button>
           <p className="mt-4 text-sm text-center">
             Already have an Account? {""}
             <NavLink

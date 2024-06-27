@@ -7,9 +7,9 @@ import { useQueryClient } from "@tanstack/react-query";
 
 // local imports
 import { FollowService } from "@/services";
-import { Loading } from "@/components";
+import { Button } from "@/components";
 import { useApi, usePlant } from "@/hooks";
-import { PlantProfile } from ".";
+import { PlantProfile } from "../types";
 
 interface Props {
   info: Pick<Plant, "plantname" | "name"> &
@@ -38,18 +38,16 @@ const ButtonForFollow: FC<Props> = ({ info }) => {
   });
 
   return (
-    <Loading
-      on={isPending}
-      as="button"
+    <Button
+      loading={isPending}
       className={clsx(
         "btn btn-sm 2xl:btn-md btn-primary capitalize",
         info.isFollowed && "btn-outline"
       )}
       onClick={(e) => (e.stopPropagation(), mutate())}
-      disabled={isPending}
     >
       {info.isFollowed && "un"}follow
-    </Loading>
+    </Button>
   );
 };
 

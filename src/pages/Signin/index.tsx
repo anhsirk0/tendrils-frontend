@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 // local imports
 import { AuthService } from "@/services";
-import { Loading } from "@/components";
+import { Button } from "@/components";
 import { useRecord, useApi } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { Some } from "@/helpers";
@@ -57,15 +57,13 @@ const Signin = () => {
             className="input input-bordered"
             required
           />
-          <Loading
-            on={isPending}
-            as="button"
+          <Button
+            loading={isPending}
             type="submit"
             className="btn btn-block btn-primary shadow"
-            disabled={isPending}
           >
             Sign in
-          </Loading>
+          </Button>
           <p className="mt-4 text-sm text-center">
             Don&apos;t Have An Account? {""}
             <NavLink

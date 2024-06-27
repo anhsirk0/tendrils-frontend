@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 // local imports
-import { Loading } from "@/components";
+import { Button } from "@/components";
 import { useApi, usePlant, useRecord, usePageTitle } from "@/hooks";
 import { TendrilService } from "@/services";
 import { RoutesMap } from "@/AppRoutes";
@@ -78,15 +78,13 @@ const TendrilForm: FC<Props> = ({ uuid, data, onCancel, afterSuccess }) => {
             Cancel
           </button>
         )}
-        <Loading
-          on={isPending}
-          as="button"
+        <Button
+          loading={isPending}
           type="submit"
           className="btn btn-primary shadow"
-          disabled={isPending}
         >
           {uuid ? "Update" : "Create"} Tendril
-        </Loading>
+        </Button>
       </div>
     </form>
   );

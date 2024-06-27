@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 
 // local imports
-import { Loading } from "@/components";
+import { Button } from "@/components";
 import { useApi, usePlant } from "@/hooks";
 import { CommentService } from "@/services";
 
@@ -42,18 +42,16 @@ const CommentForm: FC<Props> = ({ uuid, onCancel, afterSuccess }) => {
         required
       />
       <div className="flex gap-2 2xl:gap-4 justify-end">
-        <button onClick={onCancel} className="btn">
-          Cancel
-        </button>
-        <Loading
-          on={isPending}
-          as="button"
-          className="btn btn-primary"
+        <Button
+          loading={isPending}
+          className="btn-primary"
           onClick={(e) => (e.stopPropagation(), mutate())}
-          disabled={isPending}
         >
           Comment
-        </Loading>
+        </Button>
+        <Button className="btn-neutral" onClick={onCancel}>
+          Cancel
+        </Button>
       </div>
     </div>
   );

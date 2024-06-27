@@ -1,6 +1,6 @@
 import {
   Fragment,
-  ComponentPropsWithoutRef,
+  ComponentPropsWithRef,
   ElementType,
   createElement,
   ReactNode,
@@ -10,7 +10,7 @@ import { Color } from "@/types";
 
 interface LoadingProps<C> {
   on: boolean;
-  color?: Color;
+  loaderColor?: Color;
   as?: C;
   Loader?: ReactNode;
   div?: boolean;
@@ -20,15 +20,15 @@ function Loading<C extends ElementType>({
   on,
   as: component,
   children,
-  color,
+  loaderColor,
   Loader,
   div,
   ...rest
-}: LoadingProps<C> & ComponentPropsWithoutRef<C>) {
+}: LoadingProps<C> & ComponentPropsWithRef<C>) {
   return createElement(
     component ?? (div ? "div" : Fragment),
     div || component ? rest : {},
-    on ? Loader || <DefaultLoader color={color} /> : children
+    on ? Loader || <DefaultLoader color={loaderColor} /> : children
   );
 }
 
