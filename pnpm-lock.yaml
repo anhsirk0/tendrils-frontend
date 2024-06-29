@@ -29,9 +29,6 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
-      daisyui:
-        specifier: ^4.7.2
-        version: 4.7.2(postcss@8.4.31)
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
@@ -56,9 +53,6 @@ importers:
       tailwindcss-radix:
         specifier: ^3.0.3
         version: 3.0.3
-      theme-change:
-        specifier: ^2.5.0
-        version: 2.5.0
       vite-tsconfig-paths:
         specifier: ^4.2.1
         version: 4.2.1(typescript@5.2.2)(vite@4.5.0)
@@ -81,6 +75,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.0.3
         version: 4.1.0(vite@4.5.0)
+      daisyui:
+        specifier: ^4.12.10
+        version: 4.12.10(postcss@8.4.31)
       eslint:
         specifier: ^8.52.0
         version: 8.52.0
@@ -1679,8 +1676,8 @@ packages:
     resolution: {integrity: sha512-pHJg+jbuFsCjz9iclQBqyL3B2HLCBF71BwVNujUYEvCeQMvV97R59MNK3R2+jgJ3a1fcZgI9B3vYgz8lzr/BFQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  daisyui@4.7.2:
-    resolution: {integrity: sha512-9UCss12Zmyk/22u+JbkVrHHxOzFOyY17HuqP5LeswI4hclbj6qbjJTovdj2zRy8cCH6/n6Wh0lTLjriGnyGh0g==}
+  daisyui@4.12.10:
+    resolution: {integrity: sha512-jp1RAuzbHhGdXmn957Z2XsTZStXGHzFfF0FgIOZj3Wv9sH7OZgLfXTRZNfKVYxltGUOBsG1kbWAdF5SrqjebvA==}
     engines: {node: '>=16.9.0'}
 
   damerau-levenshtein@1.0.8:
@@ -3084,9 +3081,6 @@ packages:
 
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
-
-  theme-change@2.5.0:
-    resolution: {integrity: sha512-B/UdsgdHAGhSKHTAQnxg/etN0RaMDpehuJmZIjLMDVJ6DGIliRHGD6pODi1CXLQAN9GV0GSyB3G6yCuK05PkPQ==}
 
   thenify-all@1.6.0:
     resolution: {integrity: sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==}
@@ -5157,7 +5151,7 @@ snapshots:
 
   culori@3.3.0: {}
 
-  daisyui@4.7.2(postcss@8.4.31):
+  daisyui@4.12.10(postcss@8.4.31):
     dependencies:
       css-selector-tokenizer: 0.8.0
       culori: 3.3.0
@@ -7111,8 +7105,6 @@ snapshots:
       - ts-node
 
   text-table@0.2.0: {}
-
-  theme-change@2.5.0: {}
 
   thenify-all@1.6.0:
     dependencies:

@@ -1,24 +1,18 @@
-import { useEffect } from "react";
-
 // icons imports
 import { IconColorSwatch } from "@tabler/icons-react";
 
 // other imports
-import { themeChange } from "theme-change";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 // local imports
 import { themes } from "@/config";
+import { useTheme } from "@/hooks";
 
 const SelectTheme = () => {
-  useEffect(() => {
-    themeChange(false);
-  }, []);
-
+  const { applyTheme } = useTheme();
   return (
     <Menu>
       <div className="dropdown dropdown-bottom dropdown-end">
-        <div className="hidden" data-set-theme="" data-key="tendrils-theme" />
         <MenuButton
           className="tooltip tooltip-bottom tooltip-accent"
           data-tip="Change theme"
@@ -33,9 +27,8 @@ const SelectTheme = () => {
               as="div"
               key={theme}
               className="btn h-10 justify-between rounded-btn w-full"
-              data-key="tendrils-theme"
+              onClick={() => applyTheme(theme)}
               data-theme={theme}
-              data-set-theme={theme}
             >
               {theme}
               <div className="flex flex-row gap-1 rounded-btn [&>div]:h-6 [&>div]:w-2 [&>div]:rounded-xl">

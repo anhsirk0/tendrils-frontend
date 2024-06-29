@@ -1,15 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { groupBy } from "@/helpers";
-import { usePlant } from "@/hooks";
+import { usePlant, useTheme } from "@/hooks";
 import { appRoutes, GetRoute } from "@/AppRoutes";
 import { Layout, AuthLayout } from "@/layouts";
 
 const allRoutes = groupBy(appRoutes, "kind");
 
 const AppRoutes = () => {
+  useTheme(true);
   const plant = usePlant();
-  console.log(plant.isJust);
-
   return (
     <BrowserRouter>
       <Routes>
