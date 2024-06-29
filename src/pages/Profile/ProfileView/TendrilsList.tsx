@@ -35,7 +35,7 @@ const TendrilsList: FC<Props> = ({ plant, total }) => {
     };
   }
 
-  const { data, isLoading, fetchNextPage, isFetchingNextPage } =
+  const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery({
       queryKey: ["getTendrils", token],
       queryFn: fetchTendrils,
@@ -46,9 +46,11 @@ const TendrilsList: FC<Props> = ({ plant, total }) => {
     });
 
   const onScroll = useCallback(
-    (e: Event) =>
-      infiniteScroll(fetchNextPage)({ currentTarget: e.currentTarget! }),
-    [fetchNextPage]
+    (e: Event) => {
+      if (hasNextPage)
+        infiniteScroll(fetchNextPage)({ currentTarget: e.currentTarget! });
+    },
+    [fetchNextPage, hasNextPage]
   );
 
   useEffect(() => {

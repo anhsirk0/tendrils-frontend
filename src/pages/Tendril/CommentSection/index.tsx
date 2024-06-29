@@ -38,7 +38,7 @@ const CommentSection: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
     };
   }
 
-  const { data, isLoading, fetchNextPage, isFetchingNextPage } =
+  const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery({
       queryKey: ["getComments", tendril.uuid],
       queryFn: fetchComments,
@@ -61,9 +61,11 @@ const CommentSection: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
     }, 100);
   }
   const onScroll = useCallback(
-    (e: Event) =>
-      infiniteScroll(fetchNextPage)({ currentTarget: e.currentTarget! }),
-    [fetchNextPage]
+    (e: Event) => {
+      if (hasNextPage)
+        infiniteScroll(fetchNextPage)({ currentTarget: e.currentTarget! });
+    },
+    [fetchNextPage, hasNextPage]
   );
 
   useEffect(() => {
