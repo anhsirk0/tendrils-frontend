@@ -1,15 +1,15 @@
-import { FC, useState } from "react";
+import { FC, useState, useMemo, useCallback, useEffect } from "react";
 
 // icons imports
 import { IconMessage } from "@tabler/icons-react";
 import { IconPlus } from "@tabler/icons-react";
 
 // other imports
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 // local imports
 import { Loading } from "@/components";
-import { Some, getElementMaybe } from "@/helpers";
+import { Some, getElementMaybe, infiniteScroll } from "@/helpers";
 import { usePlant, useResponsive } from "@/hooks";
 import HeartButton from "@/pages/Home/Feed/HeartButton";
 import { FeedTendril } from "@/pages/Home/types";
@@ -23,18 +23,34 @@ const CommentSection: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
   const R = useResponsive();
   const [isCommenting, setIsCommenting] = useState(false);
 
-  async function getComments() {
-    const resp = await CommentService.getAll({ uuid: tendril.uuid });
-    return Some.Array(resp?.data?.data);
+  async function fetchComments({ pageParam = 0 }: { pageParam: number }) {
+    const resp = await CommentService.getAll({
+      uuid: tendril.uuid,
+      page: pageParam,
+    });
+    const data = Some.Object(resp?.data?.data);
+    const hasNextPage =
+      pageParam * CommentService.TAKE + Some.Number(data.pageTotal) <=
+      Some.Number(data.total);
+    return {
+      data: Some.Array(data?.data).map(toComment),
+      nextCursor: hasNextPage ? pageParam + 1 : undefined,
+    };
   }
 
-  const { data: comments, isLoading } = useQuery({
-    queryKey: ["getComments", tendril.uuid],
-    queryFn: getComments,
-    refetchOnWindowFocus: false,
-    initialData: [],
-    select: (data) => data.map(toComment),
-  });
+  const { data, isLoading, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["getComments", tendril.uuid],
+      queryFn: fetchComments,
+      refetchOnWindowFocus: false,
+      initialPageParam: 0,
+      getNextPageParam: (lastPage) => lastPage.nextCursor,
+    });
+
+  const comments = useMemo(
+    () => (data ? data.pages.flatMap((page) => page.data) : []),
+    [data]
+  );
 
   function onClick() {
     setIsCommenting(true);
@@ -44,6 +60,17 @@ const CommentSection: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
       );
     }, 100);
   }
+  const onScroll = useCallback(
+    (e: Event) =>
+      infiniteScroll(fetchNextPage)({ currentTarget: e.currentTarget! }),
+    [fetchNextPage]
+  );
+
+  useEffect(() => {
+    const container = document.getElementById("tendril-container");
+    container?.addEventListener("scroll", onScroll);
+    return () => container?.removeEventListener("scroll", onScroll);
+  }, [onScroll]);
 
   return (
     <div
@@ -85,6 +112,7 @@ const CommentSection: FC<{ tendril: FeedTendril }> = ({ tendril }) => {
             No comments
           </p>
         )}
+        <Loading div on={isFetchingNextPage} className="center" />
       </Loading>
     </div>
   );

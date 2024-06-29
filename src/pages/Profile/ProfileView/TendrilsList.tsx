@@ -52,7 +52,7 @@ const TendrilsList: FC<Props> = ({ plant, total }) => {
   );
 
   useEffect(() => {
-    const container = document.getElementById("main") as HTMLDivElement | null;
+    const container = document.getElementById("main");
     container?.addEventListener("scroll", onScroll);
     return () => container?.removeEventListener("scroll", onScroll);
   }, [onScroll]);
