@@ -17,7 +17,10 @@ const SelectTheme = () => {
           className="tooltip tooltip-bottom tooltip-accent"
           data-tip="Change theme"
         >
-          <label className="btn btn-sm 2xl:btn-md 2xl:px-3 btn-ghost font-normal">
+          <label
+            tabIndex={0}
+            className="btn btn-sm 2xl:btn-md 2xl:px-3 btn-ghost font-normal"
+          >
             <IconColorSwatch className="text-accent" />
           </label>
         </MenuButton>

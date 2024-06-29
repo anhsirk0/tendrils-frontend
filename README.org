@@ -1,5 +1,6 @@
 * Tendrils
-[[./public/logo.png]]
+[[#+attr_html: :width 200px :center t
+./public/logo.png]]
 ** About
 Very simple text only social media + blog WebApp
 ** Installation

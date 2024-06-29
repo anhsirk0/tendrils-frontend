@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 // icons imports
 import { IconMessage } from "@tabler/icons-react";
 
 // other imports
-import { format } from "date-fns";
+import { format, isToday, isYesterday } from "date-fns";
 import { clsx } from "clsx";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -22,6 +22,13 @@ interface Props {
 const FeedItem: FC<Props> = ({ tendril, compact }) => {
   const R = useResponsive();
   const navigate = useNavigate();
+
+  const dateStr = useMemo(() => {
+    let fmt = "hh:mm aa, dd-MM-yyyy";
+    if (isToday(tendril.createdAt)) fmt = "hh:mm aa'";
+    if (isYesterday(tendril.createdAt)) fmt = "hh:mm aa 'Yesterday'";
+    return format(tendril.createdAt, fmt);
+  }, [tendril.createdAt]);
 
   return (
     <div
@@ -52,7 +59,7 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
         <div className="grow" />
         <div className="flex gap-1 md:gap-2 items-center">
           <p className="text-xs md:text-sm 2xl:text-lg text-80">
-            {format(tendril.createdAt, "hh:mm aa, dd-MM-yyyy")}
+            {dateStr}
             {!compact && <span className="text-60"> by</span>}
           </p>
           {!compact && <AuthorInfo {...tendril.author} />}

@@ -51,7 +51,7 @@ const ButtonForFollow: FC<Props> = ({ info }) => {
 };
 
 const YouBadge: FC = () => (
-  <div className="center bg-neutral px-4 py-2 rounded-btn text-sm md:text-md">
+  <div className="center bg-neutral text-neutral-content px-4 py-2 rounded-btn text-sm md:text-md">
     You
   </div>
 );
