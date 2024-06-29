@@ -14,3 +14,7 @@ declare type Plant = {
   token: string;
   avatarUrl: string;
 };
+
+declare type TokenOpt = {
+  token?: Plant["plantname"];
+};

@@ -54,7 +54,7 @@ const FollowItem: FC<Props> = ({ followee, compact }) => {
           </p>
         )}
       </div>
-      {!compact && !followee.isMe && <FollowButton info={followee} />}
+      {!compact && <FollowButton info={followee} />}
     </div>
   );
 };

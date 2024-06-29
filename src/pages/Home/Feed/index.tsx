@@ -1,11 +1,11 @@
-import { FC, UIEvent, useMemo } from "react";
+import { FC, useMemo } from "react";
 
 // other imports
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 // local imports
 import { Loading } from "@/components";
-import { Some } from "@/helpers";
+import { Some, infiniteScroll } from "@/helpers";
 import { usePlant } from "@/hooks";
 import { TendrilService } from "@/services";
 import { toFeedTendril } from "../helpers";
@@ -41,11 +41,6 @@ const Feed: FC = () => {
     [data]
   );
 
-  function onScroll(event: UIEvent<HTMLDivElement>) {
-    const { clientHeight, scrollHeight, scrollTop } = event.currentTarget;
-    if (scrollHeight - scrollTop - clientHeight < 0.8) fetchNextPage();
-  }
-
   return (
     <div className="col-span-9 lg:col-span-7 h-full min-h-0 flex flex-col">
       <p className="text-md pb-4">Feed</p>
@@ -53,7 +48,7 @@ const Feed: FC = () => {
         div
         on={isLoading}
         className="flex flex-col gap-4 min-h-0 h-full md:pr-4 grow overflow-y-auto"
-        {...(hasNextPage && { onScroll })}
+        {...(hasNextPage && { onScroll: infiniteScroll(fetchNextPage) })}
       >
         {tendrils.map((tendril) => (
           <FeedItem tendril={tendril} key={tendril.id} />

@@ -32,17 +32,17 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
   const R = useResponsive();
 
   return (
-    <div className="flex flex-col h-full max-w-6xl w-full">
+    <div className="flex flex-col h-full max-w-7xl w-full">
       <div className="flex items-center gap-4 md:gap-8 2xl:gap-16 md:mt-2 2xl:mt-8 w-full">
         <div className="avatar placeholder">
-          <div className="bg-neutral text-2xl md:text-4xl 2xl:text-6xl text-neutral-content rounded-btn w-40 2xl:w-52">
+          <div className="bg-neutral text-2xl md:text-4xl 2xl:text-6xl text-neutral-content rounded-btn w-32 md:w-40 2xl:w-44">
             {avatarUrl ? <img alt="avatar" src={avatarUrl} /> : toAvatar(name)}
           </div>
         </div>
         <div className="flex flex-col gap-2 2xl:gap-4">
-          <p className="text-xl md:text-3xl 2xl:text-5xl text-base-content font-semibold">
+          <h2 className="text-xl md:text-2xl 2xl:text-4xl text-base-content font-semibold">
             {name}
-          </p>
+          </h2>
           <div className="flex gap-4 items-center">
             <p className="text-lg md:text-xl 2xl:text-3xl text-60">
               @{plantname}
@@ -51,7 +51,7 @@ const ProfileView: FC<Props> = ({ profile, onEditClick }) => {
               <FollowButton info={profile} />
             ))}
           </div>
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 2xl:gap-12 text-lg md:text-xl 2xl:text-3xl text-80">
+          <div className="flex flex-col md:flex-row md:gap-8 2xl:gap-12 md:text-lg lg:text-xl 2xl:text-2xl text-80">
             <a href="#tendrils" className="link link-hover">
               <StatLabel total={tendrilsCount} label="Tendrils" />
             </a>

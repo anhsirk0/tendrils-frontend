@@ -25,7 +25,7 @@ const HeartButton: FC<Props> = ({ curls, uuid }) => {
         .run((curled) => (
           <Btn curled={curled} uuid={uuid} setCount={setCount} />
         ))
-        .unwrapOr(<IconHeart size={R({ base: 24, lg: 28, "2xl": 32 })} />)}
+        .unwrapOr(<IconHeart size={R({ base: 20, lg: 24, "2xl": 28 })} />)}
       <p className="text-sm md:text-md 2xl:text-lg text-base-content font-medium">
         {count}
       </p>

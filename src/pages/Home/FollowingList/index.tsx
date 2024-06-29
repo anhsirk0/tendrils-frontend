@@ -1,13 +1,19 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, useMemo } from "react";
 
 import { Loading } from "@/components";
 import { usePlant } from "@/hooks";
+import { infiniteScroll } from "@/helpers";
 import { useFollowing } from "../helpers";
 import FollowItem from "./FollowItem";
 
 const FollowingList: FC = () => {
   const plant = usePlant().unwrap();
-  const { data: following, isLoading } = useFollowing(plant);
+  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useFollowing(plant);
+  const following = useMemo(
+    () => (data ? data.pages.flatMap((page) => page.data) : []),
+    [data]
+  );
 
   return (
     <Fragment>
@@ -16,10 +22,14 @@ const FollowingList: FC = () => {
         div
         on={isLoading}
         className="flex flex-col min-h-0 overflow-auto"
+        {...(hasNextPage && { onScroll: infiniteScroll(fetchNextPage) })}
       >
         {following.map((plant) => (
           <FollowItem followee={plant} key={plant.id} compact />
         ))}
+        <Loading div on={isFetchingNextPage} className="center text-60">
+          {!hasNextPage && "You've reached the end"}
+        </Loading>
       </Loading>
     </Fragment>
   );

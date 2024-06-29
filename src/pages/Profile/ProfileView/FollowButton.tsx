@@ -16,9 +16,8 @@ interface Props {
     Pick<PlantProfile, "isFollowed" | "isMe">;
 }
 
-const FollowButton: FC<Props> = ({ info }) => {
-  return info.isMe ? <YouBadge /> : <ButtonForFollow info={info} />;
-};
+const FollowButton: FC<Props> = ({ info }) =>
+  info.isMe ? <YouBadge /> : <ButtonForFollow info={info} />;
 
 const ButtonForFollow: FC<Props> = ({ info }) => {
   const token = usePlant().get("token").unwrapUndef();
@@ -46,13 +45,15 @@ const ButtonForFollow: FC<Props> = ({ info }) => {
       )}
       onClick={(e) => (e.stopPropagation(), mutate())}
     >
-      {info.isFollowed && "un"}follow
+      {info.isFollowed ? "unfollow" : "follow"}
     </Button>
   );
 };
 
 const YouBadge: FC = () => (
-  <div className="badge badge-primary 2xl:badge-xl">You</div>
+  <div className="center bg-neutral px-4 py-2 rounded-btn text-sm md:text-md">
+    You
+  </div>
 );
 
 export default FollowButton;

@@ -1,11 +1,11 @@
-import { FC, useEffect, useCallback } from "react";
+import { FC, useEffect, useMemo, useCallback } from "react";
 
 // other imports
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 // local imports
 import { Loading } from "@/components";
-import { Some } from "@/helpers";
+import { Some, infiniteScroll } from "@/helpers";
 import { usePlant } from "@/hooks";
 import { toTendril } from "@/pages/Home/helpers";
 import { TendrilService } from "@/services";
@@ -46,34 +46,34 @@ const TendrilsList: FC<Props> = ({ plant, total }) => {
     });
 
   const onScroll = useCallback(
-    (event: Event) => {
-      const { clientHeight, scrollHeight, scrollTop } =
-        event.currentTarget as HTMLElement;
-      if (scrollHeight - scrollTop - clientHeight < 0.8) fetchNextPage();
-    },
+    (e: Event) =>
+      infiniteScroll(fetchNextPage)({ currentTarget: e.currentTarget! }),
     [fetchNextPage]
   );
 
   useEffect(() => {
-    const container = document.getElementById("main");
+    const container = document.getElementById("main") as HTMLDivElement | null;
     container?.addEventListener("scroll", onScroll);
     return () => container?.removeEventListener("scroll", onScroll);
   }, [onScroll]);
 
+  const tendrils = useMemo(
+    () => (data ? data.pages.flatMap((page) => page.data) : []),
+    [data]
+  );
+
   return (
     <Loading div on={isLoading} className="flex flex-col gap-4 pb-4">
       <p className="text-base-content">Tendrils ({total})</p>
-      <div className="grid grid-cols-12 gap-4 2xl:gap-12">
-        {data?.pages
-          .flatMap((page) => page.data)
-          .map((tendril) => (
-            <div
-              className="col-span-12 md:col-span-6 [&>div]:h-60 [&>div]:2xl:h-80"
-              key={tendril.id}
-            >
-              <FeedItem tendril={{ ...tendril, author: plant }} compact />
-            </div>
-          ))}
+      <div className="grid grid-cols-12 gap-4 2xl:gap-8">
+        {tendrils.map((tendril) => (
+          <div
+            className="col-span-12 md:col-span-6 lg:col-span-4 2xl:col-span-6 [&>div]:h-60 [&>div]:2xl:h-80"
+            key={tendril.id}
+          >
+            <FeedItem tendril={{ ...tendril, author: plant }} compact />
+          </div>
+        ))}
       </div>
       <Loading div on={isFetchingNextPage} className="center" />
     </Loading>

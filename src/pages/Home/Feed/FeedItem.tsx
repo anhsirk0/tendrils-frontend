@@ -26,15 +26,15 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
   return (
     <div
       role="button"
-      className="p-4 md:p-6 2xl:p-8 flex flex-col gap-2 md:gap-4 border border-base-content/10 rounded-btn hover:bg-base-content/5"
+      className="p-4 2xl:p-6 flex flex-col gap-2 md:gap-4 border border-base-content/10 rounded-btn hover:bg-base-content/5"
       onClick={() => navigate(toTendrilLink(tendril.uuid))}
     >
-      <h2 className="text-lg md:text-xl 2xl:text-2xl font-bold line-clamp-1">
+      <h2 className="text-md md:text-lg 2xl:text-xl font-bold line-clamp-1">
         {tendril.title}
       </h2>
       <pre
         className={clsx(
-          "text-sm md:text-md 2xl:text-lg",
+          "text-xs md:text-sm 2xl:text-md",
           compact ? "line-clamp-4" : "line-clamp-6"
         )}
       >
@@ -44,14 +44,14 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
       <div className="flex gap-2 md:gap-4 mt-2 2xl:mt-4">
         <HeartButton curls={tendril.curls} uuid={tendril.uuid} />
         <div className="flex gap-1 md:gap-2 items-center [&>*]:text-base-content">
-          <IconMessage size={R({ base: 24, lg: 28, "2xl": 32 })} />
+          <IconMessage size={R({ base: 20, lg: 24, "2xl": 28 })} />
           <p className="text-sm md:text-md 2xl:text-lg font-medium">
             {tendril.commentsCount}
           </p>
         </div>
         <div className="grow" />
         <div className="flex gap-1 md:gap-2 items-center">
-          <p className="text-sm md:text-md 2xl:text-xl text-80">
+          <p className="text-xs md:text-sm 2xl:text-lg text-80">
             {format(tendril.createdAt, "hh:mm aa, dd-MM-yyyy")}
             {!compact && <span className="text-60"> by</span>}
           </p>

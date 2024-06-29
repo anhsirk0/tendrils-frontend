@@ -1,27 +1,32 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { FollowService } from "@/services";
 import { Some } from "@/helpers";
 import { toFollowee } from "./";
 
-interface Params {
-  plantname: Plant["plantname"];
-  token?: Plant["token"];
-}
-
-function useFollowing(params: Params) {
-  async function getFollowing() {
-    const resp = await FollowService.getFollowing(params);
-    return Some.Array(resp?.data?.data?.following).map(toFollowee);
+function useFollowing(params: Pick<Plant, "plantname"> & TokenOpt) {
+  async function fetchFollowing({ pageParam = 0 }: { pageParam: number }) {
+    const resp = await FollowService.getFollowing({
+      ...params,
+      page: pageParam,
+    });
+    const data = Some.Object(resp?.data?.data);
+    const hasNextPage =
+      pageParam * FollowService.TAKE + Some.Number(data.pageTotal) <=
+      Some.Number(data.total);
+    return {
+      data: Some.Array(data?.data).map(toFollowee),
+      nextCursor: hasNextPage ? pageParam + 1 : undefined,
+    };
   }
 
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["getFollowing", params.plantname],
-    queryFn: getFollowing,
-    /* select: (data) => data.map(toFollowee), */
+    queryFn: fetchFollowing,
     refetchOnWindowFocus: false,
     enabled: !!params.token,
-    initialData: [],
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
 }
 
