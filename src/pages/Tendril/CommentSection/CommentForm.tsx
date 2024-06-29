@@ -34,8 +34,8 @@ const CommentForm: FC<Props> = ({ uuid, onCancel, afterSuccess, show }) => {
 
   return (
     <Transition show={show}>
-      <div className="max-h-full transition-all ease-in-out duration-500 data-[closed]:max-h-0 data-[leave]:data-[closed]:max-h-0 overflow-hidden">
-        <div className="flex flex-col gap-4 2xl:gap-8 mt-4 2xl:mt-8 mx-1">
+      <div className="max-h-full transition-all ease-in-out duration-300 data-[closed]:max-h-0 data-[leave]:data-[closed]:max-h-0 overflow-hidden">
+        <div className="flex flex-col gap-4 2xl:gap-8 mt-4 2xl:mt-8 m-1">
           <textarea
             id="comment-box"
             value={content}

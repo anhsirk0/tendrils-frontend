@@ -4,12 +4,11 @@ import { FC, useMemo } from "react";
 import { IconMessage } from "@tabler/icons-react";
 
 // other imports
-import { format, isToday, isYesterday } from "date-fns";
 import { clsx } from "clsx";
 import { useNavigate, Link } from "react-router-dom";
 
 // local imports
-import { toAvatar, toProfileLink, toTendrilLink } from "@/helpers";
+import { toAvatar, toProfileLink, toTendrilLink, toDateStr } from "@/helpers";
 import { useResponsive } from "@/hooks";
 import { FeedTendril } from "@/pages/Home/types";
 import HeartButton from "./HeartButton";
@@ -23,12 +22,10 @@ const FeedItem: FC<Props> = ({ tendril, compact }) => {
   const R = useResponsive();
   const navigate = useNavigate();
 
-  const dateStr = useMemo(() => {
-    let fmt = "hh:mm aa, dd-MM-yyyy";
-    if (isToday(tendril.createdAt)) fmt = "hh:mm aa'";
-    if (isYesterday(tendril.createdAt)) fmt = "hh:mm aa 'Yesterday'";
-    return format(tendril.createdAt, fmt);
-  }, [tendril.createdAt]);
+  const dateStr = useMemo(
+    () => toDateStr(tendril.createdAt),
+    [tendril.createdAt]
+  );
 
   return (
     <div

@@ -1,19 +1,21 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 // other imports
 import { Link } from "react-router-dom";
-import { format } from "date-fns";
 
 // local imports
-import { toAvatar, toProfileLink } from "@/helpers";
+import { toAvatar, toProfileLink, toDateStr } from "@/helpers";
 import { Comment } from "../types";
 
-interface Props {
-  comment: Comment;
-}
+type Props = { comment: Comment };
 
 const CommentItem: FC<Props> = ({ comment }) => {
   const { plant } = comment;
+  const dateStr = useMemo(
+    () => toDateStr(comment.createdAt),
+    [comment.createdAt]
+  );
+
   return (
     <div className="flex flex-col gap-1 md:gap-2 border border-base-content/30 rounded-btn p-2 2xl:p-4">
       <Link
@@ -33,9 +35,7 @@ const CommentItem: FC<Props> = ({ comment }) => {
         <div className="flex flex-col">
           <div className="flex flex-row gap-1 md:gap-2">
             <p className="truncate 2xl:text-lg px-2 font-bold">{plant.name}</p>
-            <p className="2xl:text-lg text-80">
-              {format(comment.createdAt, "hh:mm aa, dd-MM-yyyy")}
-            </p>
+            <p className="2xl:text-lg text-80">{dateStr}</p>
           </div>
           <p className="truncate text-xs md:text-sm 2xl:text-md px-2">
             @{plant.plantname}

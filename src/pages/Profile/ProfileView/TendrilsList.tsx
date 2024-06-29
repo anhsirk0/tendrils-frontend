@@ -70,7 +70,7 @@ const TendrilsList: FC<Props> = ({ plant, total }) => {
       <div className="grid grid-cols-12 gap-4 2xl:gap-8">
         {tendrils.map((tendril) => (
           <div
-            className="col-span-12 md:col-span-6 lg:col-span-4 2xl:col-span-6 [&>div]:h-60 [&>div]:2xl:h-80"
+            className="col-span-12 md:col-span-6 lg:col-span-4 2xl:col-span-6 [&>div]:h-48 [&>div]:2xl:h-64"
             key={tendril.id}
           >
             <FeedItem tendril={{ ...tendril, author: plant }} compact />
