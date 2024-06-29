@@ -2,7 +2,7 @@ import { createInstance, addToken } from "./config";
 
 export class TendrilService {
   static instance = createInstance("tendrils/");
-  static TAKE = 5;
+  static TAKE = 10;
 
   static create(param: Dict) {
     return addToken(this.instance, param).post("create", param.data);

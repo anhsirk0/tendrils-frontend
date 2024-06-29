@@ -54,7 +54,7 @@ const Btn: FC<BtnProps> = ({ curled, uuid, setCount }) => {
       onClick={(e) => (e.stopPropagation(), mutate())}
     >
       {createElement(isCurled ? IconHeartFilled : IconHeart, {
-        size: R({ base: 24, lg: 28, "2xl": 32 }),
+        size: R({ base: 20, lg: 24, "2xl": 28 }),
         className: isCurled ? "text-primary" : "text-base-content",
       })}
     </button>
