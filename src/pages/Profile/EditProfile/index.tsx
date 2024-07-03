@@ -25,17 +25,13 @@ const EditProfile: FC<Props> = ({ profile, onCancel }) => {
 
   const [info, updateInfo] = useRecord({
     name: profile.name,
-    avatar: profile.avatarUrl,
+    avatarUrl: profile.avatarUrl,
   });
 
   const { mutate, isPending } = useApi({
-    fn: () =>
-      PlantService.updateProfile({
-        data: { name: info.name, avatarUrl: info.avatar },
-        token,
-      }),
+    fn: () => PlantService.updateProfile({ data: { ...info }, token }),
     onSuccess: () => {
-      updatePlant({ name: info.name, avatarUrl: info.avatar });
+      updatePlant({ ...info });
       toast.success("Profile updated successfully");
       client.invalidateQueries({ queryKey: ["getProfile"] });
       onCancel();
