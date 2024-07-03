@@ -20,7 +20,7 @@ interface Props {
 const EditProfile: FC<Props> = ({ profile, onCancel }) => {
   const { update: updatePlant } = useAuthStore();
 
-  const token = usePlant().unwrap().token;
+  const token = usePlant().get().token;
   const client = useQueryClient();
 
   const [info, updateInfo] = useRecord({

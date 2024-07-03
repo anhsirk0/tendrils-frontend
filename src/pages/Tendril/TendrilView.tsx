@@ -24,7 +24,7 @@ const TendrilView: FC<Props> = ({ tendril, onEditClick }) => {
   const R = useResponsive();
   const isMe = usePlant()
     .run((p) => p.plantname === tendril.author.plantname)
-    .unwrapOr(false);
+    .getOr(false);
 
   return (
     <div className="flex flex-col h-full w-full max-w-7xl gap-4 2xl:gap-8">

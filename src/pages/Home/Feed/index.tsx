@@ -12,7 +12,7 @@ import { toFeedTendril } from "../helpers";
 import FeedItem from "./FeedItem";
 
 const Feed: FC = () => {
-  const token = usePlant().unwrap().token;
+  const token = usePlant().get().token;
 
   async function fetchFeed({ pageParam = 0 }: { pageParam: number }) {
     const resp = await TendrilService.getFeed({ token, page: pageParam });

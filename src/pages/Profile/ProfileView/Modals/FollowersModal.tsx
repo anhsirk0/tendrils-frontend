@@ -30,9 +30,7 @@ const FollowersList: FC<Pick<Plant, "plantname" | "token">> = ({
       {followers.map((plant) => (
         <FollowItem followee={plant} key={plant.id} />
       ))}
-      <Loading div on={isFetchingNextPage} className="center text-60">
-        {!hasNextPage && "You've reached the end"}
-      </Loading>
+      <Loading div on={isFetchingNextPage} className="center" />
     </Loading>
   );
 };

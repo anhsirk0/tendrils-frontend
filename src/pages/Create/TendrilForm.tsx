@@ -27,7 +27,7 @@ const TendrilForm: FC<Props> = ({ uuid, data, onCancel, afterSuccess }) => {
   );
 
   const navigate = useNavigate();
-  const plant = usePlant().unwrap();
+  const plant = usePlant().get();
 
   function submitForm() {
     const method = uuid ? "update" : "create";

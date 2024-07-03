@@ -20,7 +20,7 @@ const FollowButton: FC<Props> = ({ info }) =>
   info.isMe ? <YouBadge /> : <ButtonForFollow info={info} />;
 
 const ButtonForFollow: FC<Props> = ({ info }) => {
-  const token = usePlant().get("token").unwrapUndef();
+  const token = usePlant().prop("token").getUndef();
   const client = useQueryClient();
 
   const { mutate, isPending } = useApi({

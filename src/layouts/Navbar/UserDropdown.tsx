@@ -51,7 +51,7 @@ const UserDropdown = () => {
         </div>
       </Menu>
     ))
-    .unwrapOr(
+    .getOr(
       <Link to="/" className="btn btn-primary btn-sm 2xl:btn-md ml-3">
         Sign In
       </Link>

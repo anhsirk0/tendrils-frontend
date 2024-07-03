@@ -15,7 +15,7 @@ type Props = {
 
 const ModalRoot: FC<Props> = ({ label, total, renderContent }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const token = usePlant().get("token").unwrapUndef();
+  const token = usePlant().prop("token").getUndef();
   if (!token || total < 1) return <StatLabel total={total} label={label} div />;
 
   return (

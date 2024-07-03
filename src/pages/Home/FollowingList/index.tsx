@@ -7,7 +7,7 @@ import { useFollowing } from "../helpers";
 import FollowItem from "./FollowItem";
 
 const FollowingList: FC = () => {
-  const plant = usePlant().unwrap();
+  const plant = usePlant().get();
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useFollowing(plant);
   const following = useMemo(

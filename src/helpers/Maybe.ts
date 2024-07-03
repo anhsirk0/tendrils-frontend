@@ -30,20 +30,20 @@ export class Maybe<T> {
     return new Maybe<U>();
   }
 
-  get<U extends NonNullable<T[K]>, K extends keyof T = keyof T>(key: K) {
+  prop<U extends NonNullable<T[K]>, K extends keyof T = keyof T>(key: K) {
     return this.run<U>((v) => v[key] as U);
   }
 
-  unwrap(msg?: any): T {
+  get(msg?: any): T {
     if (isJust(this.data)) return this.data.value;
     throw Error(msg ?? "No value to unwrap");
   }
 
-  unwrapOr(fallback: T): T {
+  getOr(fallback: T): T {
     return isJust(this.data) ? this.data.value : fallback;
   }
 
-  unwrapUndef(): T | undefined {
+  getUndef(): T | undefined {
     return isJust(this.data) ? this.data.value : undefined;
   }
 

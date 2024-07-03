@@ -17,7 +17,7 @@ interface Props {
 }
 
 const TendrilsList: FC<Props> = ({ plant, total }) => {
-  const token = usePlant().get("token").unwrapUndef();
+  const token = usePlant().prop("token").getUndef();
 
   async function fetchTendrils({ pageParam = 0 }: { pageParam: number }) {
     const resp = await TendrilService.getAll({

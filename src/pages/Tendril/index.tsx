@@ -15,7 +15,7 @@ import TendrilForm from "../Create/TendrilForm";
 
 const TendrilPage = () => {
   const { uuid } = useParams();
-  const token = usePlant().get("token").unwrapUndef();
+  const token = usePlant().prop("token").getUndef();
   const [isEditing, setIsEditing] = useState(false);
 
   async function getTendril() {

@@ -16,7 +16,7 @@ import EditProfile from "./EditProfile";
 const Profile = () => {
   const { plantname } = useParams();
   usePageTitle("@" + plantname);
-  const token = usePlant().get("token").unwrapUndef();
+  const token = usePlant().prop("token").getUndef();
   const [isEditing, setIsEditing] = useState(false);
 
   async function getProfile() {

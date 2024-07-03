@@ -25,7 +25,7 @@ const HeartButton: FC<Props> = ({ curls, uuid }) => {
         .run((curled) => (
           <Btn curled={curled} uuid={uuid} setCount={setCount} />
         ))
-        .unwrapOr(<IconHeart size={R({ base: 20, lg: 24, "2xl": 28 })} />)}
+        .getOr(<IconHeart size={R({ base: 20, lg: 24, "2xl": 28 })} />)}
       <p className="text-sm md:text-md 2xl:text-lg text-base-content font-medium">
         {count}
       </p>
@@ -35,7 +35,7 @@ const HeartButton: FC<Props> = ({ curls, uuid }) => {
 
 type BtnProps = { curled: boolean; uuid: string; setCount: SetStateFn<number> };
 const Btn: FC<BtnProps> = ({ curled, uuid, setCount }) => {
-  const token = usePlant().unwrap().token;
+  const token = usePlant().get().token;
   const [isCurled, setIsCurled] = useState(curled);
   const R = useResponsive();
 
