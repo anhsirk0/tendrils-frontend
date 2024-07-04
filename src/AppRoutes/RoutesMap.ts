@@ -9,6 +9,7 @@ const Profile = lazy(() => import("@/pages/Profile"));
 const Tendril = lazy(() => import("@/pages/Tendril"));
 const Signin = lazy(() => import("@/pages/Signin"));
 const Signup = lazy(() => import("@/pages/Signin/Signup"));
+const Explore = lazy(() => import("@/pages/Explore"));
 
 class RoutesMap {
   // Private Routes
@@ -68,6 +69,15 @@ class RoutesMap {
     path: "t/:uuid",
     subRoutes: {},
     Element: Tendril,
+    // Skeleton: DashboardSkeleton,
+    kind: "independent",
+  };
+
+  static EXPLORE: AppRoute = {
+    title: "Explore",
+    path: "explore",
+    subRoutes: {},
+    Element: Explore,
     // Skeleton: DashboardSkeleton,
     kind: "independent",
   };

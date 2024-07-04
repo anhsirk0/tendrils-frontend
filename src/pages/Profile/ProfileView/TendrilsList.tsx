@@ -40,7 +40,7 @@ const TendrilsList: FC<Props> = ({ plant, total }) => {
       queryKey: ["getTendrils", token],
       queryFn: fetchTendrils,
       refetchOnWindowFocus: false,
-      enabled: !!token,
+      /* enabled: !!token, */
       initialPageParam: 0,
       getNextPageParam: (lastPage) => lastPage.nextCursor,
     });

@@ -19,7 +19,7 @@ interface Props {
 
 const CommentForm: FC<Props> = ({ uuid, onCancel, afterSuccess, show }) => {
   const [content, setContent] = useState("");
-  const token = usePlant().get().token;
+  const token = usePlant().prop("token").getUndef();
   const client = useQueryClient();
 
   const { mutate, isPending } = useApi({

@@ -13,6 +13,10 @@ export class PlantService {
     return addToken(this.instance, param).get("profile/" + param.plantname);
   }
 
+  static getPopular() {
+    return this.instance.get("popular");
+  }
+
   static updateProfile(param: UpdateProfileParam) {
     return addToken(this.instance, param).post("update/", param.data);
   }
