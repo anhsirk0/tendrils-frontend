@@ -1,6 +1,7 @@
 import { useMediaQuery, usePageTitle } from "@/hooks";
 import { RoutesMap } from "@/AppRoutes";
 import PopularPlants from "./PopularPlants";
+import PopularTendrils from "./PopularTendrils";
 
 const Explore = () => {
   usePageTitle(RoutesMap.EXPLORE.title);
@@ -13,7 +14,7 @@ const Explore = () => {
           <PopularPlants />
         </div>
       )}
-      Feed
+      <PopularTendrils />
       {isLg && <div className="col-span-3" />}
     </div>
   );

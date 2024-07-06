@@ -17,7 +17,7 @@ const PopularPlants: FC = () => {
   }
 
   const { data: popularPlants, isLoading } = useQuery({
-    queryKey: ["getPopular"],
+    queryKey: ["getPopularPlants"],
     queryFn: getPopular,
     refetchOnWindowFocus: false,
     select: (data) => data.map(toFollowee),

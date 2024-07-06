@@ -73,6 +73,13 @@ const Signin = () => {
               Sign Up
             </NavLink>
           </p>
+          <div className="divider" />
+          <NavLink
+            to={RoutesMap.EXPLORE.path}
+            className="btn btn-outline btn-primary w-full"
+          >
+            Explore
+          </NavLink>
         </form>
       </div>
     </div>

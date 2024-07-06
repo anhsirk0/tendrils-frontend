@@ -28,10 +28,14 @@ export class TendrilService {
   }
 
   static getOne(param: Dict) {
-    return addToken(this.instance, param).get(param.uuid);
+    return addToken(this.instance, param).get("tendril/" + param.uuid);
   }
 
   static toggleCurl(param: Dict) {
     return addToken(this.instance, param).post("toggle-curl/" + param.uuid);
+  }
+
+  static getPopular() {
+    return this.instance.get("popular");
   }
 }
