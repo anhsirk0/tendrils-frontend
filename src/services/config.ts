@@ -1,8 +1,9 @@
 import axios, { AxiosInstance } from "axios";
+import env from "@/environment";
 
 export function createInstance(base: string = "") {
   return axios.create({
-    baseURL: "http://localhost:8000/" + base,
+    baseURL: env.apiUrl + base,
     timeout: 1000,
   });
 }

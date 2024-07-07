@@ -27,6 +27,7 @@ const CommentForm: FC<Props> = ({ uuid, onCancel, afterSuccess, show }) => {
     onSuccess: () => {
       toast.success("Comment added successfully");
       client.invalidateQueries({ queryKey: ["getComments"] });
+      setContent("");
       afterSuccess();
     },
     onError: (resp) => toast.error(resp?.message || "Something went wrong"),

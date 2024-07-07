@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Color } from "@/types";
+import { clsx } from "clsx";
 
-export type LoaderProps = { color?: Color };
+export type LoaderProps = { color?: Color; className?: string };
 
 const classes = {
   primary: "text-primary",
@@ -14,9 +15,13 @@ const classes = {
   error: "text-error",
 };
 
-const Loader: FC<LoaderProps> = ({ color = "primary" }) => (
+const Loader: FC<LoaderProps> = ({ color = "primary", className }) => (
   <div
-    className={"loading loading-infinity 2xl:loading-lg " + classes[color]}
+    className={clsx(
+      "loading loading-infinity 2xl:loading-lg",
+      classes[color],
+      className
+    )}
   />
 );
 

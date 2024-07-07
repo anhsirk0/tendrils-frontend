@@ -5,12 +5,11 @@ import {
   createElement,
   ReactNode,
 } from "react";
-import { Loader as DefaultLoader } from "@/components";
-import { Color } from "@/types";
+import DefaultLoader, { LoaderProps } from "@/components/Loader";
 
 interface LoadingProps<C> {
   on: boolean;
-  loaderColor?: Color;
+  loaderProps?: LoaderProps;
   as?: C;
   Loader?: ReactNode;
   div?: boolean;
@@ -20,15 +19,15 @@ function Loading<C extends ElementType>({
   on,
   as: component,
   children,
-  loaderColor,
   Loader,
   div,
+  loaderProps,
   ...rest
 }: LoadingProps<C> & ComponentPropsWithRef<C>) {
   return createElement(
     component ?? (div ? "div" : Fragment),
     div || component ? rest : {},
-    on ? Loader || <DefaultLoader color={loaderColor} /> : children
+    on ? Loader || <DefaultLoader {...loaderProps} /> : children
   );
 }
 
