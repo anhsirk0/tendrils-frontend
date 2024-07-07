@@ -1,8 +1,5 @@
 type EnvName = "prod" | "local";
-type Environment = {
-  name: EnvName;
-  apiUrl: string;
-};
+type Environment = { name: EnvName; apiUrl: string };
 
 function getEnvironment(): Environment {
   if (window.location.href.includes("localhost"))
