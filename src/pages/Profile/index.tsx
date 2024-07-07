@@ -20,6 +20,7 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   async function getProfile() {
+    if (!plantname) throw Error("This wont happen");
     const resp = await PlantService.getProfile({ plantname, token });
     return toPlantProfile(resp?.data?.data);
   }
