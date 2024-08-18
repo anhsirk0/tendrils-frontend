@@ -4,7 +4,7 @@ import env from "@/environment";
 export function createInstance(base: string = "") {
   return axios.create({
     baseURL: env.apiUrl + base,
-    timeout: 1000,
+    timeout: 5000,
   });
 }
 
